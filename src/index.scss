@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
 //null styles
-
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -40,12 +40,10 @@ a {
   color: initial;
 }
 
-
 //null styles end
 
 
 // common styles
-
 .btn {
   padding: 4px 29px;
   color: black;
@@ -183,6 +181,10 @@ a {
     &-title {
       margin-bottom: 20px;
     }
+  }
+
+  &-btn {
+    margin: 54px auto 0;
   }
 }
 
