@@ -13,6 +13,8 @@ body {
   line-height: 26px;
   background: #F8F8F8;
   font-family: 'Nunito', sans-serif;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
@@ -50,6 +52,18 @@ a {
   background: #F4E041;
   border: none;
   border-radius: 80px;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  text-align: center;
 }
 
 .container {
@@ -121,9 +135,6 @@ a {
     color: #FFFFFF;
 
     h1 {
-      font-weight: 400;
-      font-size: 40px;
-      line-height: 40px;
       margin-bottom: 21px;
     }
   }
@@ -144,21 +155,22 @@ a {
   align-items: stretch;
 
   h2 {
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 40px;
     color: rgba(0, 0, 0, 0.87);
     margin-bottom: 50px;
-    text-align: center;
   }
 
   &__items {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     column-gap: 29px;
     row-gap: 29px;
+
+    &::after {
+      content: "";
+      flex: auto;
+    }
   }
 
   &__item {
@@ -174,8 +186,10 @@ a {
     &-img {
       width: 70px;
       height: 70px;
+      border-radius: 50%;
       margin-top: 20px;
       margin-bottom: 10px;
+      overflow: hidden;
     }
 
     &-title {
@@ -185,6 +199,22 @@ a {
 
   &-btn {
     margin: 54px auto 0;
+
+    &:disabled {
+      pointer-events: none;
+      background: #B4B4B4;
+      color: white;
+      visibility: hidden;
+    }
+  }
+}
+
+.form {
+
+
+  h2 {
+    margin-top: 140px;
+    color: black;
   }
 }
 
