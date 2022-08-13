@@ -1,4 +1,4 @@
-import { Header, Preview, Content, Form } from './components'
+import { Header, Preview, Content, FormComponent } from './components'
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
 				<main>
 					<Preview/>
 					<Content/>
-					<Form/>
+					<FormComponent/>
 				</main>
 			</div>
 		</div>
