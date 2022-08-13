@@ -1,16 +1,23 @@
 //form
 .form {
   width: 380px;
-  margin: 0 auto;
+  margin: 140px auto 104px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   h2 {
-    margin-top: 140px;
     color: black;
     margin-bottom: 50px;
+    width: 100%;
   }
 
   &__input {
     margin-bottom: 25px;
+    width: 100%;
 
     input {
       display: block;
@@ -33,6 +40,7 @@
 
   &__radios {
     margin-bottom: 47px;
+    width: 100%;
   }
 
   &__radio {
@@ -82,4 +90,38 @@
       }
     }
   }
+
+  &__inputBtn {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &__uploadFile {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 50px;
+  }
+
+  &__customBtn {
+    padding: 14px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.87);
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+  }
+
+  &__uploadText {
+    display: flex;
+    width: 100%;
+    border: 1px solid #D0CFCF;
+    border-radius: 0 4px 4px 0;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 14px 15px;
+  }
+
+
 }
