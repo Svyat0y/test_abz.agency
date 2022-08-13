@@ -1,31 +1,32 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": "plugin:react/recommended",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": "plugin:react/recommended",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/display-name": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/no-unescaped-entities": 0,
+    "quotes": [
+      "error",
+      "single",
+      "avoid-escape"
     ],
-    "rules": {
-        "react/display-name": "off",
-        "react/prop-types": "off",
-        "react/react-in-jsx-scope": "off",
-        "quotes": [
-            "error",
-            "single",
-            "avoid-escape"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ]
-    }
+    "semi": [
+      "error",
+      "never"
+    ]
+  }
 }

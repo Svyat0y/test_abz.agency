@@ -1,0 +1,38 @@
+// header
+.header {
+  position: relative;
+  background: white;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 300%;
+    height: 60px;
+    background: white;
+  }
+
+  &::before {
+    left: -300%;
+  }
+
+  &::after {
+    right: -300%;
+  }
+
+  &__logo {
+    width: 104px;
+  }
+
+  &Btn {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
