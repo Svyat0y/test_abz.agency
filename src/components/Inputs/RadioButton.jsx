@@ -9,7 +9,6 @@ const RadioButton = ({ type, name, position, ...rest }) => {
 				<Field name={ name } { ...rest }>
 					{
 						(field, meta) => {
-							console.log(field)
 							return (
 								<input type={ type } name={ name } { ...field }/>
 							)

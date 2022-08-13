@@ -1,9 +1,11 @@
 import styles                     from './FormComponent.module.scss'
 import { Formik, Form }           from 'formik'
 import { InputText, RadioButton } from '../Inputs'
+import { useState }               from 'react'
 
 
 const FormComponent = () => {
+	const [ image, setImage ] = useState()
 
 	const initialValues = {
 		name: '',
@@ -14,6 +16,12 @@ const FormComponent = () => {
 	const onSubmit = (values, onSubmitProps) => {
 		console.log(values)
 		onSubmitProps.resetForm()
+	}
+
+	const handleChange = (event) => {
+		const [ file ] = event.target.files
+		event.preventDefault()
+		setImage(file.name)
 	}
 
 	return (
@@ -40,8 +48,9 @@ const FormComponent = () => {
 					</div>
 					<div className={ styles.form__uploadFile }>
 						<label className={ styles.form__customBtn } htmlFor='file'>Upload</label>
-						<input className={ styles.form__inputBtn } type='file' id='file'/>
-						<span className={ styles.form__uploadText }>Upload your photo</span>
+						<input onChange={ handleChange } className={ styles.form__inputBtn } type='file' id='file'
+							   accept='image/jpeg, image/png'/>
+						<span className={ styles.form__uploadText }>{ image ? image : 'Upload your photo' }</span>
 					</div>
 					<button className={ `btn ${ styles.formBtn }` } type='submit'>Sign up</button>
 				</Form>
