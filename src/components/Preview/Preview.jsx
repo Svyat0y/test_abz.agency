@@ -1,7 +1,12 @@
 import styles from './Preview.module.scss'
 
 
-const Preview = () => {
+const Preview = ({ formRef }) => {
+
+	const scrollToForm = () => {
+		formRef.current.scrollIntoView({ behavior: 'smooth' })
+	}
+	
 	return (
 		<div className={ styles.preview }>
 			<div className={ styles.preview__textBlock }>
@@ -11,7 +16,7 @@ const Preview = () => {
 					understanding of User design thinking as they'll be building web interfaces with accessibility in mind. They
 					should also be excited to learn, as the world of Front-End Development keeps evolving.
 				</p>
-				<button className={ `btn ${ styles.previewBtn }` }>Sign up</button>
+				<button onClick={ scrollToForm } className={ `btn ${ styles.previewBtn }` }>Sign up</button>
 			</div>
 		</div>
 	)

@@ -1,14 +1,15 @@
 import styles      from './Content.module.scss'
 import emptyAvatar from '../../assets/images/photo-cover.svg'
 
-import { useEffect, useState } from 'react'
-import { fetchUsers }          from '../../api/api'
+import { useEffect, useRef, useState } from 'react'
+import { fetchUsers }                  from '../../api/api'
 
 
-const Content = () => {
+const Content = ({ contentRef }) => {
 	const [ usersData, setUsers ] = useState([])
 	const [ currentPage, setCurrentPage ] = useState(1)
 	const [ totalPages, setTotalPages ] = useState(0)
+
 
 	useEffect(() => {
 		fetchUsers(currentPage).then(({ total_pages, page, users }) => {
@@ -26,7 +27,7 @@ const Content = () => {
 	const sortedUsers = usersData.sort((a, b) => b.registration_timestamp - a.registration_timestamp)
 
 	return (
-		<div className={ styles.content }>
+		<div ref={ contentRef } className={ styles.content }>
 			<h2 className='title'>Working with GET request</h2>
 			<div className={ styles.content__items }>
 				{

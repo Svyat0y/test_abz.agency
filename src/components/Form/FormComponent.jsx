@@ -8,13 +8,13 @@ import { InputText, RadioButtons } from '../Inputs'
 import { fetchPositions }          from '../../api/api'
 
 
-const FormComponent = () => {
+const FormComponent = ({ formRef }) => {
 	const [ image, setImage ] = useState()
 	const [ radioOptions, setRadioOptions ] = useState([])
 
 	useEffect(() => {
 		fetchPositions().then(({ positions }) => setRadioOptions(positions))
-		
+
 	}, [])
 
 	const initialValues = {
@@ -36,7 +36,7 @@ const FormComponent = () => {
 	}
 
 	return (
-		<div className={ styles.form }>
+		<div ref={ formRef } className={ styles.form }>
 			<h2 className='title'>Working with POST request</h2>
 			<Formik
 				initialValues={ initialValues }
