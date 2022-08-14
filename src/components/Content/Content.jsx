@@ -23,12 +23,15 @@ const Content = () => {
 		setCurrentPage((prevState) => prevState + 1)
 	}
 
+	const sortedUsers = users.sort((a, b) => b.registration_timestamp - a.registration_timestamp)
+
 	return (
 		<div className={ styles.content }>
 			<h2 className='title'>Working with GET request</h2>
 			<div className={ styles.content__items }>
 				{
-					users && users.map(item => <div key={ item.id } className={ styles.content__item }>
+					sortedUsers && sortedUsers.map(item => <div key={ item.id }
+																className={ styles.content__item }>
 						<div className={ styles.content__itemImg }>
 							<img
 								src={ item.photo && !item.photo.includes('placeholders') ? item.photo : emptyAvatar }
