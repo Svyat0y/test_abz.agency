@@ -40,23 +40,29 @@ const FormComponent = () => {
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
 			>
+				{
+					(formik) => {
+						console.log(formik)
+						return (
+							<Form>
+								<InputText name='name' type='text' placeholder='Your name'/>
+								<InputText name='email' type='email' placeholder='Email'/>
+								<InputText name='phone' type='tel' placeholder='Phone'/>
 
-				<Form>
-					<InputText name='name' type='text' placeholder='Your name'/>
-					<InputText name='email' type='email' placeholder='Email'/>
-					<InputText name='phone' type='tel' placeholder='Phone'/>
-
-					<div className={ styles.form__radios }>
-						<RadioButtons label='Select your position' name='radio' options={ radioOptions }/>
-					</div>
-					<div className={ styles.form__uploadFile }>
-						<label className={ styles.form__customBtn } htmlFor='file'>Upload</label>
-						<input onChange={ handleChange } className={ styles.form__inputBtn } type='file' id='file'
-							   accept='image/jpeg, image/png'/>
-						<span className={ styles.form__uploadText }>{ image ? image : 'Upload your photo' }</span>
-					</div>
-					<button className='btn' type='submit'>Sign up</button>
-				</Form>
+								<div className={ styles.form__radios }>
+									<RadioButtons label='Select your position' name='radio' options={ radioOptions }/>
+								</div>
+								<div className={ styles.form__uploadFile }>
+									<label className={ styles.form__customBtn } htmlFor='file'>Upload</label>
+									<input onChange={ handleChange } className={ styles.form__inputBtn } type='file' id='file'
+										   accept='image/jpeg, image/png'/>
+									<span className={ styles.form__uploadText }>{ image ? image : 'Upload your photo' }</span>
+								</div>
+								<button disabled={ !(formik.dirty && formik.isValid) } className='btn' type='submit'>Sign up</button>
+							</Form>
+						)
+					}
+				}
 			</Formik>
 		</div>
 	)
