@@ -22,7 +22,7 @@ const Content = () => {
 	}, [ currentPage ])
 
 	const showMore = () => {
-		setCurrentPage(currentPage + 1)
+		setCurrentPage((prevState) => prevState + 1)
 	}
 
 	return (

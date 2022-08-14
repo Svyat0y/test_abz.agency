@@ -1,11 +1,18 @@
-import styles                     from './FormComponent.module.scss'
-import { Formik, Form }           from 'formik'
-import { InputText, RadioButton } from '../Inputs'
-import { useState }               from 'react'
+import styles                      from './FormComponent.module.scss'
+import { Formik, Form }            from 'formik'
+import { InputText, RadioButtons } from '../Inputs'
+import { useState }                from 'react'
 
 
 const FormComponent = () => {
 	const [ image, setImage ] = useState()
+
+	const radioOptions = [
+		{ key: 'option1', value: 'Frontend developer' },
+		{ key: 'option2', value: 'Backend developer' },
+		{ key: 'option3', value: 'Designer' },
+		{ key: 'option4', value: 'QA' },
+	]
 
 	const initialValues = {
 		name: '',
@@ -37,14 +44,7 @@ const FormComponent = () => {
 					<InputText name='phone' type='tel' placeholder='Phone'/>
 
 					<div className={ styles.form__radios }>
-						<span>Select Your position</span>
-
-						<div className={ styles.form__radio }>
-							<RadioButton name='radio' type='radio' position='Frontend developer'/>
-							<RadioButton name='radio' type='radio' position='Backend developer'/>
-							<RadioButton name='radio' type='radio' position='Designer'/>
-							<RadioButton name='radio' type='radio' position='QA'/>
-						</div>
+						<RadioButtons label='Select your position' name='radio' options={ radioOptions }/>
 					</div>
 					<div className={ styles.form__uploadFile }>
 						<label className={ styles.form__customBtn } htmlFor='file'>Upload</label>
@@ -52,7 +52,7 @@ const FormComponent = () => {
 							   accept='image/jpeg, image/png'/>
 						<span className={ styles.form__uploadText }>{ image ? image : 'Upload your photo' }</span>
 					</div>
-					<button className={ `btn ${ styles.formBtn }` } type='submit'>Sign up</button>
+					<button className='btn' type='submit'>Sign up</button>
 				</Form>
 			</Formik>
 		</div>

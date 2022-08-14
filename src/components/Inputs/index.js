@@ -1,2 +1,2 @@
-export { default as InputText }   from './InputText'
-export { default as RadioButton } from './RadioButton.jsx'
+export { default as InputText }    from './InputText'
+export { default as RadioButtons } from './RadioButtons.jsx'
