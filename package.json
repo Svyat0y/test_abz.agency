@@ -13,7 +13,7 @@
     "react-scripts": "5.0.1",
     "sass": "^1.54.4",
     "web-vitals": "^2.1.4",
-    "yap": "^0.0.2"
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Field } from 'formik'
-import styles    from '../Form/FormComponent.module.scss'
+import { ErrorMessage, Field } from 'formik'
+import styles                  from '../Form/FormComponent.module.scss'
 
 
 const RadioButtons = ({ label, name, options, ...rest }) => {
@@ -29,6 +29,7 @@ const RadioButtons = ({ label, name, options, ...rest }) => {
 					}
 				}
 			</Field>
+			<ErrorMessage name={ name }/>
 		</div>
 	)
 }

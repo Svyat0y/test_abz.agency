@@ -2,6 +2,7 @@ import styles                      from './FormComponent.module.scss'
 import { Formik, Form }            from 'formik'
 import { InputText, RadioButtons } from '../Inputs'
 import { useState }                from 'react'
+import { validationSchema }        from '../../validators'
 
 
 const FormComponent = () => {
@@ -36,7 +37,9 @@ const FormComponent = () => {
 			<h2 className='title'>Working with POST request</h2>
 			<Formik
 				initialValues={ initialValues }
-				onSubmit={ onSubmit }>
+				onSubmit={ onSubmit }
+				validationSchema={ validationSchema }
+			>
 
 				<Form>
 					<InputText name='name' type='text' placeholder='Your name'/>
