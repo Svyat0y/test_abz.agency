@@ -42,7 +42,6 @@ const FormComponent = () => {
 			>
 				{
 					(formik) => {
-						console.log(formik)
 						return (
 							<Form>
 								<InputText name='name' type='text' placeholder='Your name'/>

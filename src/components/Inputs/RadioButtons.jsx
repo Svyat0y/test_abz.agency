@@ -2,6 +2,7 @@ import React from 'react'
 
 import { ErrorMessage, Field } from 'formik'
 import styles                  from '../Form/FormComponent.module.scss'
+import { TextError }           from '../TextError'
 
 
 const RadioButtons = ({ label, name, options, ...rest }) => {
@@ -29,7 +30,7 @@ const RadioButtons = ({ label, name, options, ...rest }) => {
 					}
 				}
 			</Field>
-			<ErrorMessage name={ name }/>
+			<ErrorMessage name={ name } component={ TextError }/>
 		</div>
 	)
 }

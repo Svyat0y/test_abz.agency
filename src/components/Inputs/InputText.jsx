@@ -1,5 +1,6 @@
 import styles                  from '../Form/FormComponent.module.scss'
 import { ErrorMessage, Field } from 'formik'
+import { TextError }           from '../TextError'
 
 
 const InputText = ({ name, type, placeholder }) => {
@@ -22,7 +23,7 @@ const InputText = ({ name, type, placeholder }) => {
 					}
 				}
 			</Field>
-			<ErrorMessage name={ name }/>
+			<ErrorMessage name={ name } component={ TextError }/>
 			{ type === 'tel' && <span>+38(XXX) XXX - XXX - XX</span> }
 		</div>
 	)
