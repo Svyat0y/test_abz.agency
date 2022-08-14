@@ -1,8 +1,8 @@
-import emptyAvatar from '../../assets/images/photo-cover.svg'
 import styles      from './Content.module.scss'
+import emptyAvatar from '../../assets/images/photo-cover.svg'
 
 import { useEffect, useState } from 'react'
-import axios                   from 'axios'
+import { fetchUsers }          from '../../api/api'
 
 
 const Content = () => {
@@ -11,14 +11,12 @@ const Content = () => {
 	const [ totalPages, setTotalPages ] = useState(0)
 
 	useEffect(() => {
-		const fetchUsers = async () => {
-			const { data } = await axios.get(`https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${ currentPage }&count=6`)
+		fetchUsers(currentPage).then(data => {
 			setTotalPages(data.total_pages)
 			setCurrentPage(data.page)
 			if ( !users.length ) setUsers(data.users)
 			else setUsers([ ...users, ...data.users ])
-		}
-		fetchUsers()
+		})
 	}, [ currentPage ])
 
 	const showMore = () => {
@@ -30,7 +28,7 @@ const Content = () => {
 			<h2 className='title'>Working with GET request</h2>
 			<div className={ styles.content__items }>
 				{
-					users.map(item => <div key={ item.id } className={ styles.content__item }>
+					users && users.map(item => <div key={ item.id } className={ styles.content__item }>
 						<div className={ styles.content__itemImg }>
 							<img
 								src={ item.photo && !item.photo.includes('placeholders') ? item.photo : emptyAvatar }

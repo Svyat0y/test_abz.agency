@@ -1,8 +1,10 @@
-import styles                      from './FormComponent.module.scss'
+import styles from './FormComponent.module.scss'
+
+import { useState } from 'react'
+
 import { Formik, Form }            from 'formik'
-import { InputText, RadioButtons } from '../Inputs'
-import { useState }                from 'react'
 import { validationSchema }        from '../../validators'
+import { InputText, RadioButtons } from '../Inputs'
 
 
 const FormComponent = () => {
@@ -22,7 +24,6 @@ const FormComponent = () => {
 		radio: '',
 	}
 	const onSubmit = (values, onSubmitProps) => {
-		console.log(values)
 		onSubmitProps.resetForm()
 	}
 

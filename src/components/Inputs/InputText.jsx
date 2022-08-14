@@ -1,4 +1,5 @@
-import styles                  from '../Form/FormComponent.module.scss'
+import styles from '../Form/FormComponent.module.scss'
+
 import { ErrorMessage, Field } from 'formik'
 import { TextError }           from '../TextError'
 

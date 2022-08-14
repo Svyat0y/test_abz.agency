@@ -1,7 +1,6 @@
-import React from 'react'
+import styles from '../Form/FormComponent.module.scss'
 
 import { ErrorMessage, Field } from 'formik'
-import styles                  from '../Form/FormComponent.module.scss'
 import { TextError }           from '../TextError'
 
 
