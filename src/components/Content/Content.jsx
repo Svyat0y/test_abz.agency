@@ -9,6 +9,7 @@ const Content = ({ contentRef }) => {
 	const [ usersData, setUsers ] = useState([])
 	const [ currentPage, setCurrentPage ] = useState(1)
 	const [ totalPages, setTotalPages ] = useState(0)
+	const itemRef = useRef()
 
 
 	useEffect(() => {
@@ -22,6 +23,7 @@ const Content = ({ contentRef }) => {
 
 	const showMore = () => {
 		setCurrentPage((prevState) => prevState + 1)
+		itemRef.current.lastChild.scrollIntoView({ block: 'start', behavior: 'smooth' })
 	}
 
 	const sortedUsers = usersData.sort((a, b) => b.registration_timestamp - a.registration_timestamp)
@@ -31,7 +33,8 @@ const Content = ({ contentRef }) => {
 			<h2 className='title'>Working with GET request</h2>
 			<div className={ styles.content__items }>
 				{
-					sortedUsers && sortedUsers.map(item => <div key={ item.id }
+					sortedUsers && sortedUsers.map(item => <div ref={ itemRef }
+																key={ item.id }
 																className={ styles.content__item }>
 						<div className={ styles.content__itemImg }>
 							<img

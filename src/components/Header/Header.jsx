@@ -5,7 +5,7 @@ import logo   from '../../assets/images/logo.svg'
 const Header = ({ contentRef, formRef }) => {
 
 	const scrollToContent = () => {
-		contentRef.current.scrollIntoView({ behavior: 'smooth' })
+		contentRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' })
 	}
 
 	const scrollToForm = () => {
