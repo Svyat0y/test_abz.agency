@@ -6,16 +6,16 @@ import { fetchUsers }          from '../../api/api'
 
 
 const Content = () => {
-	const [ users, setUsers ] = useState([])
+	const [ usersData, setUsers ] = useState([])
 	const [ currentPage, setCurrentPage ] = useState(1)
 	const [ totalPages, setTotalPages ] = useState(0)
 
 	useEffect(() => {
-		fetchUsers(currentPage).then(data => {
-			setTotalPages(data.total_pages)
-			setCurrentPage(data.page)
-			if ( !users.length ) setUsers(data.users)
-			else setUsers([ ...users, ...data.users ])
+		fetchUsers(currentPage).then(({ total_pages, page, users }) => {
+			setTotalPages(total_pages)
+			setCurrentPage(page)
+			if ( !usersData.length ) setUsers(users)
+			else setUsers(prevState => [ ...prevState, ...users ])
 		})
 	}, [ currentPage ])
 
@@ -23,7 +23,7 @@ const Content = () => {
 		setCurrentPage((prevState) => prevState + 1)
 	}
 
-	const sortedUsers = users.sort((a, b) => b.registration_timestamp - a.registration_timestamp)
+	const sortedUsers = usersData.sort((a, b) => b.registration_timestamp - a.registration_timestamp)
 
 	return (
 		<div className={ styles.content }>
