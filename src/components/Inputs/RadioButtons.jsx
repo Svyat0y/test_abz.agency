@@ -14,15 +14,15 @@ const RadioButtons = ({ label, name, options, ...rest }) => {
 					({ field }) => {
 						return options.map(option => {
 							return (
-								<div className={ styles.form__radio } key={ option.key }>
+								<div className={ styles.form__radio } key={ option.id }>
 									<input
 										type='radio'
-										id={ option.key }
+										id={ option.id }
 										{ ...field }
-										value={ option.value }
-										checked={ field.value === option.value }
+										value={ option.name }
+										checked={ field.value === option.name }
 									/>
-									<label htmlFor={ option.key }>{ option.value }</label>
+									<label htmlFor={ option.id }>{ option.name }</label>
 								</div>
 							)
 						})

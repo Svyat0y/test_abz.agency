@@ -10,15 +10,14 @@ const InputText = ({ name, type, placeholder }) => {
 			<label htmlFor={ name }></label>
 			<Field name={ name }>
 				{
-					({ field, meta }) => {
+					({ field, meta, form }) => {
 						return (
-							<input
-								type={ type }
-								name={ name }
-								id={ field.name }
-								placeholder={ placeholder }
-								{ ...field }
-
+							<input className={ form.errors[name] && meta.touched ? styles.error : '' }
+								   type={ type }
+								   name={ name }
+								   id={ field.name }
+								   placeholder={ placeholder }
+								   { ...field }
 							/>
 						)
 					}

@@ -1,21 +1,21 @@
 import styles from './FormComponent.module.scss'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Formik, Form }            from 'formik'
 import { validationSchema }        from '../../validators'
 import { InputText, RadioButtons } from '../Inputs'
+import { fetchPositions }          from '../../api/api'
 
 
 const FormComponent = () => {
 	const [ image, setImage ] = useState()
+	const [ radioOptions, setRadioOptions ] = useState([])
 
-	const radioOptions = [
-		{ key: 'option1', value: 'Frontend developer' },
-		{ key: 'option2', value: 'Backend developer' },
-		{ key: 'option3', value: 'Designer' },
-		{ key: 'option4', value: 'QA' },
-	]
+	useEffect(() => {
+		fetchPositions().then(({ positions }) => setRadioOptions(positions))
+		
+	}, [])
 
 	const initialValues = {
 		name: '',
@@ -23,7 +23,9 @@ const FormComponent = () => {
 		phone: '',
 		radio: '',
 	}
+
 	const onSubmit = (values, onSubmitProps) => {
+		console.log(values)
 		onSubmitProps.resetForm()
 	}
 

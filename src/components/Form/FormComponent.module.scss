@@ -29,6 +29,10 @@
       padding: 14px 16px;
       color: #7E7E7E;
       outline: none;
+
+      &.error {
+        border: 2px solid #CB3D40;
+      }
     }
 
     span {

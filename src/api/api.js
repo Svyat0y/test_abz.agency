@@ -14,5 +14,14 @@ export const fetchUsers = async (currentPage) => {
 	catch ( e ) {
 		console.log('error message:', e.message)
 	}
+}
 
+export const fetchPositions = async () => {
+	try {
+		const { data } = await instance.get('positions')
+		return data
+	}
+	catch ( e ) {
+		console.log('error message', e.message)
+	}
 }
