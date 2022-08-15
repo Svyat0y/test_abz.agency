@@ -13,6 +13,7 @@
   border: none;
   border-radius: 80px;
   cursor: pointer;
+  @include initial_bg_onTap;
 
   &:hover {
     background: $bg_btn_hover;

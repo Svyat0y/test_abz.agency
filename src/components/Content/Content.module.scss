@@ -1,3 +1,5 @@
+@import './src/scss/variables';
+
 //content
 .content {
   margin-top: 140px;
@@ -60,6 +62,7 @@
       text-overflow: ellipsis;
       overflow: hidden;
       position: relative;
+      @include initial_bg_onTap;
     }
 
     &Title {
