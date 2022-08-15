@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asap&display=swap');
+
+@import './normalize.scss';
+@import './variables';
+
+
+// common styles
+.btn {
+  padding: 4px 22px;
+  color: $text_color-black;
+  background: $bg_yellow;
+  border: none;
+  border-radius: 80px;
+  cursor: pointer;
+
+  &:hover {
+    background: $bg_btn_hover;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    background: $bg_btn_disabled;
+    color: $text_color-white;
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+//common styles end

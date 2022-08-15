@@ -1,11 +1,19 @@
 //content
 .content {
   margin-top: 140px;
-  display: flex;
   width: 100%;
-  justify-content: center;
-  flex-direction: column;
-  align-items: stretch;
+
+  @media (max-width: 1024px) {
+    padding: 0 60px;
+  }
+
+  @media (max-width: 992px) {
+    padding: 0 32px;
+  }
+
+  @media (max-width: 567px) {
+    padding: 0 16px;
+  }
 
   h2 {
     color: rgba(0, 0, 0, 0.87);
@@ -13,22 +21,22 @@
   }
 
   &__items {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: row wrap;
-    column-gap: 29px;
-    row-gap: 29px;
+    display: grid;
+    grid-template-columns:  repeat(3, minmax(282px, 4fr));
+    gap: 29px;
 
-    &::after {
-      content: "";
-      flex: auto;
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, minmax(282px, 4fr));
+      gap: 16px
+    }
+
+    @media (max-width: 567px) {
+      grid-template-columns: 1fr;
+      gap: 20px 16px
     }
   }
 
   &__item {
-    flex: 1 1 33.333%;
-    max-width: 370px;
     background: white;
     display: flex;
     justify-content: center;
@@ -60,11 +68,17 @@
 
   }
 
-  &Btn {
-    margin: 54px auto 0;
+  &__btnWr {
+    display: flex;
+    justify-content: center;
+    margin-top: 54px;
 
-    &:disabled {
-      visibility: hidden;
+    .contentBtn {
+      &:disabled {
+        visibility: hidden;
+      }
     }
   }
+
+
 }

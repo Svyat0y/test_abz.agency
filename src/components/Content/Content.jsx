@@ -66,12 +66,14 @@ const Content = ({ contentRef }) => {
 					</div>)
 				}
 			</div>
-			<button
-				onClick={ showMore }
-				disabled={ currentPage === totalPages }
-				className={ `btn ${ styles.contentBtn }` }>
-				Show more
-			</button>
+			<div className={ styles.content__btnWr }>
+				<button
+					onClick={ showMore }
+					disabled={ currentPage === totalPages }
+					className={ `btn ${ styles.contentBtn }` }>
+					Show more
+				</button>
+			</div>
 		</div>
 	)
 }
