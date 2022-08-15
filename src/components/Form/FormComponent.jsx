@@ -50,7 +50,6 @@ const FormComponent = ({ formRef }) => {
 								<InputText name='name' type='text' placeholder='Your name'/>
 								<InputText name='email' type='email' placeholder='Email'/>
 								<InputText name='phone' type='tel' placeholder='Phone'/>
-
 								<div className={ styles.form__radios }>
 									<RadioButtons label='Select your position' name='radio' options={ radioOptions }/>
 								</div>

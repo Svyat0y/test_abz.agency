@@ -1,0 +1,22 @@
+@mixin initial_bg_onTap {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@mixin flex($justify-content: null, $align-items: null, $flex-direction: null) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-direction;
+}
+
+@mixin padding1024($top: 0, $right: 60px ) {
+  padding: $top $right;
+}
+
+@mixin padding768($top: 0, $right: 32px ) {
+  padding: $top $right;
+}
+
+@mixin padding360($top: 0, $right: 16px ) {
+  padding: $top $right;
+}

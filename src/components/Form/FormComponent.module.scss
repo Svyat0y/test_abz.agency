@@ -7,13 +7,11 @@
 
   @media (max-width: 567px) {
     width: 360px;
-    padding: 0 16px;
+    @include padding360()
   }
 
   form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex(null, center, column);
   }
 
   h2 {
@@ -53,19 +51,14 @@
   &__radios {
     margin-bottom: 47px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    @include flex(null, null, column);
 
     label {
       margin-bottom: 14px;
     }
 
     &Wr {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-
+      @include flex(center, flex-start, column);
     }
   }
 
@@ -128,8 +121,7 @@
   &__uploadFile {
     margin-bottom: 50px;
     width: 100%;
-    display: flex;
-    justify-content: flex-start;
+    @include flex(flex-start);
   }
 
   &__customBtn {
@@ -141,8 +133,7 @@
   }
 
   &__uploadText {
-    display: flex;
-    justify-content: flex-start;
+    @include flex(flex-start);
     align-items: center;
     width: 100%;
     padding: 14px 15px;
