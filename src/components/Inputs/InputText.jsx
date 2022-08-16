@@ -4,7 +4,7 @@ import { ErrorMessage, Field } from 'formik'
 import { TextError }           from '../TextError'
 
 
-const InputText = ({ name, type, placeholder }) => {
+const InputText = ({ name, type, placeholder, onClick }) => {
 	return (
 		<div className={ styles.form__input }>
 			<label htmlFor={ name }></label>
@@ -12,7 +12,8 @@ const InputText = ({ name, type, placeholder }) => {
 				{
 					({ field, meta, form }) => {
 						return (
-							<input className={ form.errors[name] && meta.touched ? styles.error : '' }
+							<input onClick={ () => onClick(form) }
+								   className={ form.errors[name] && meta.touched ? styles.error : '' }
 								   type={ type }
 								   name={ name }
 								   id={ field.name }

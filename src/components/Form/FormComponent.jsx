@@ -14,7 +14,6 @@ const FormComponent = ({ formRef }) => {
 
 	useEffect(() => {
 		fetchPositions().then(({ positions }) => setRadioOptions(positions))
-
 	}, [])
 
 	const initialValues = {
@@ -35,6 +34,17 @@ const FormComponent = ({ formRef }) => {
 		setImage(file.name)
 	}
 
+	const onClickInput = ({ setValues, values }) => {
+		if ( !values.phone.includes('+380') ) {
+			setValues({
+				name: '',
+				email: '',
+				phone: '+380',
+				radio: ''
+			})
+		}
+	}
+
 	return (
 		<div ref={ formRef } className={ styles.form }>
 			<h2 className='title'>Working with POST request</h2>
@@ -42,6 +52,7 @@ const FormComponent = ({ formRef }) => {
 				initialValues={ initialValues }
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
+				enableReinitialize
 			>
 				{
 					(formik) => {
@@ -49,7 +60,7 @@ const FormComponent = ({ formRef }) => {
 							<Form>
 								<InputText name='name' type='text' placeholder='Your name'/>
 								<InputText name='email' type='email' placeholder='Email'/>
-								<InputText name='phone' type='tel' placeholder='Phone'/>
+								<InputText onClick={ onClickInput } name='phone' type='tel' placeholder='Phone'/>
 								<div className={ styles.form__radios }>
 									<RadioButtons label='Select your position' name='radio' options={ radioOptions }/>
 								</div>

@@ -9,14 +9,14 @@
   flex-direction: $flex-direction;
 }
 
-@mixin padding1024($top: 0, $right: 60px ) {
-  padding: $top $right;
+@mixin padding1024($topBottom: 0, $rightLeft: 60px ) {
+  padding: $topBottom $rightLeft;
 }
 
-@mixin padding768($top: 0, $right: 32px ) {
-  padding: $top $right;
+@mixin padding768($topBottom: 0, $rightLeft: 32px ) {
+  padding: $topBottom $rightLeft;
 }
 
-@mixin padding360($top: 0, $right: 16px ) {
-  padding: $top $right;
+@mixin padding360($topBottom: 0, $rightLeft: 16px ) {
+  padding: $topBottom $rightLeft;
 }
