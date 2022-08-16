@@ -35,8 +35,9 @@ const FormComponent = ({ formRef }) => {
 	}
 
 	const handleFocus = (e, form) => {
-		if ( !e.target.value.includes('+380') ) {
-			form.setFieldValue('phone', '+380')
+		const value = e.target.value
+		if ( !value.includes('+380') || value.includes(' ') ) {
+			form.setFieldValue('phone', '+380'.trim())
 			form.setFieldTouched('phone',)
 		}
 	}
@@ -49,6 +50,7 @@ const FormComponent = ({ formRef }) => {
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
 				enableReinitialize
+				validateOnMount
 			>
 				{
 					(formik) => {
@@ -66,7 +68,7 @@ const FormComponent = ({ formRef }) => {
 										   accept='image/jpeg, image/png'/>
 									<span className={ styles.form__uploadText }>{ image ? image : 'Upload your photo' }</span>
 								</div>
-								<button disabled={ false } className='btn' type='submit'>Sign up</button>
+								<button disabled={ !(formik.dirty && formik.isValid) } className='btn' type='submit'>Sign up</button>
 							</Form>
 						)
 					}
