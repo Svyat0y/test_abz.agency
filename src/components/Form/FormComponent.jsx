@@ -37,7 +37,7 @@ const FormComponent = ({ formRef }) => {
 	const handleFocus = (e, form) => {
 		if ( !e.target.value.includes('+380') ) {
 			form.setFieldValue('phone', '+380')
-			form.setFieldTouched('phone', '+380')
+			form.setFieldTouched('phone',)
 		}
 	}
 
