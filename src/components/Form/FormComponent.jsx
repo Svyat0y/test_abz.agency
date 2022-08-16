@@ -66,7 +66,7 @@ const FormComponent = ({ formRef }) => {
 										   accept='image/jpeg, image/png'/>
 									<span className={ styles.form__uploadText }>{ image ? image : 'Upload your photo' }</span>
 								</div>
-								<button disabled={ !(formik.dirty && formik.isValid) } className='btn' type='submit'>Sign up</button>
+								<button disabled={ false } className='btn' type='submit'>Sign up</button>
 							</Form>
 						)
 					}
