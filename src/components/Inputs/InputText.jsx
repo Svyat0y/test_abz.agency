@@ -11,6 +11,7 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 			<Field name={ name }>
 				{
 					({ field, meta, form }) => {
+						console.log(form)
 						return (
 							<input onFocus={ type === 'tel' ? e => handleFocus(e, form) : e => {} }
 								   className={ form.errors[name] && meta.touched ? styles.error : '' }
