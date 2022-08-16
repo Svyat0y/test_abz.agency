@@ -36,9 +36,9 @@ const FormComponent = ({ formRef }) => {
 
 	const handleFocus = (e, form) => {
 		const value = e.target.value
+
 		if ( !value.includes('+380') || value.includes(' ') ) {
 			form.setFieldValue('phone', '+380'.trim())
-			form.setFieldTouched('phone',)
 		}
 	}
 
@@ -49,8 +49,6 @@ const FormComponent = ({ formRef }) => {
 				initialValues={ initialValues }
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
-				enableReinitialize
-				validateOnMount
 			>
 				{
 					(formik) => {

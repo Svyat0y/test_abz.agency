@@ -8,13 +8,12 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 	return (
 		<div className={ styles.form__input }>
 			<label htmlFor={ name }></label>
-			<Field autoComplete='on' name={ name }>
+			<Field autoComplete={ name } name={ name }>
 				{
 					({ field, meta, form }) => {
-						console.log(form)
 						return (
 							<input onFocus={ type === 'tel' ? e => handleFocus(e, form) : e => {} }
-								   className={ form.errors[name] && meta.touched ? styles.error : '' }
+								   className={ meta.error && meta.touched ? styles.error : '' }
 								   type={ type }
 								   name={ name }
 								   id={ field.name }
