@@ -34,14 +34,9 @@ const FormComponent = ({ formRef }) => {
 		setImage(file.name)
 	}
 
-	const onClickInput = ({ setValues, values }) => {
-		if ( !values.phone.includes('+380') ) {
-			setValues({
-				name: '',
-				email: '',
-				phone: '+380',
-				radio: ''
-			})
+	const handleFocus = (e, form) => {
+		if ( !e.target.value.includes('+380') ) {
+			form.setFieldValue('phone', '+380')
 		}
 	}
 
@@ -60,7 +55,7 @@ const FormComponent = ({ formRef }) => {
 							<Form>
 								<InputText name='name' type='text' placeholder='Your name'/>
 								<InputText name='email' type='email' placeholder='Email'/>
-								<InputText onClick={ onClickInput } name='phone' type='tel' placeholder='Phone'/>
+								<InputText handleFocus={ handleFocus } name='phone' type='tel' placeholder='Phone'/>
 								<div className={ styles.form__radios }>
 									<RadioButtons label='Select your position' name='radio' options={ radioOptions }/>
 								</div>
