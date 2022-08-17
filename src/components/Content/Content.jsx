@@ -1,8 +1,8 @@
 import styles      from './Content.module.scss'
 import emptyAvatar from '../../assets/images/photo-cover.svg'
 
-import { useEffect, useState } from 'react'
-import { fetchUsers }          from '../../api/api'
+import { useEffect, useRef, useState } from 'react'
+import { fetchUsers }                  from '../../api/api'
 
 import { Preloader } from '../index'
 
@@ -12,6 +12,8 @@ const Content = ({ contentRef }) => {
 	const [ currentPage, setCurrentPage ] = useState(1)
 	const [ totalPages, setTotalPages ] = useState(0)
 	const [ isLoading, setIsLoading ] = useState(false)
+
+	const usersTitleRef = useRef()
 
 	useEffect(() => {
 		setIsLoading(true)
@@ -25,6 +27,7 @@ const Content = ({ contentRef }) => {
 
 	const showMore = () => {
 		setCurrentPage((prevState) => prevState + 1)
+		usersTitleRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' })
 	}
 
 	const sortedUsers = usersData.sort((a, b) => b.registration_timestamp - a.registration_timestamp)
@@ -60,7 +63,7 @@ const Content = ({ contentRef }) => {
 
 	return (
 		<div ref={ contentRef } className={ styles.content }>
-			<h2 className='title'>Working with GET request</h2>
+			<h2 ref={ usersTitleRef } className='title'>Working with GET request</h2>
 			{
 				!isLoading
 					? renderUsers()
