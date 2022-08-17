@@ -1,11 +1,12 @@
 import styles from './FormComponent.module.scss'
 
 import { useEffect, useState } from 'react'
+import { fetchPositions }      from '../../api/api'
 
-import { Formik, Form }            from 'formik'
-import { validationSchema }        from '../../validators'
+import { Formik, Form }     from 'formik'
+import { validationSchema } from '../../validators'
+
 import { InputText, RadioButtons } from '../Inputs'
-import { fetchPositions }          from '../../api/api'
 
 
 const FormComponent = ({ formRef }) => {
