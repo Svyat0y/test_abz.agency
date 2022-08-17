@@ -33,7 +33,7 @@
     }
 
     @media (max-width: 567px) {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(244px, 1fr);
       gap: 20px 16px
     }
   }
