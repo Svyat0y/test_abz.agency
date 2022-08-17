@@ -3,16 +3,16 @@ import { useRef }                                  from 'react'
 
 
 function App() {
-	const contentRef = useRef()
+	const usersTitleRef = useRef()
 	const formRef = useRef()
 
 	return (
 		<div className="App">
 			<div className='container'>
-				<Header contentRef={ contentRef } formRef={ formRef }/>
+				<Header usersTitleRef={ usersTitleRef } formRef={ formRef }/>
 				<main>
 					<Preview formRef={ formRef }/>
-					<Content contentRef={ contentRef }/>
+					<Content usersTitleRef={ usersTitleRef }/>
 					<FormComponent formRef={ formRef }/>
 				</main>
 			</div>

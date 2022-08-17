@@ -7,13 +7,11 @@ import { fetchUsers }                  from '../../api/api'
 import { Preloader } from '../index'
 
 
-const Content = ({ contentRef }) => {
+const Content = ({ usersTitleRef }) => {
 	const [ usersData, setUsersData ] = useState([])
 	const [ currentPage, setCurrentPage ] = useState(1)
 	const [ totalPages, setTotalPages ] = useState(0)
 	const [ isLoading, setIsLoading ] = useState(false)
-
-	const usersTitleRef = useRef()
 
 	useEffect(() => {
 		setIsLoading(true)
@@ -66,7 +64,7 @@ const Content = ({ contentRef }) => {
 
 
 	return (
-		<div ref={ contentRef } className={ styles.content }>
+		<div className={ styles.content }>
 			<h2 ref={ usersTitleRef } className='title'>Working with GET request</h2>
 			{
 				!isLoading
