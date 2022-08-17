@@ -7,7 +7,6 @@ import { Formik, Form }     from 'formik'
 import { validationSchema } from '../../validators'
 
 import { InputFileUpload, InputText, RadioButtons } from '../Inputs'
-import { TextError }                                from '../TextError'
 
 
 const FormComponent = ({ formRef }) => {
@@ -22,7 +21,7 @@ const FormComponent = ({ formRef }) => {
 		email: '',
 		phone: '',
 		radio: '',
-		file: null,
+		file: '',
 	}
 
 	const onSubmit = (values, onSubmitProps) => {
@@ -48,7 +47,6 @@ const FormComponent = ({ formRef }) => {
 			>
 				{
 					(formik) => {
-						console.log(formik)
 						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched } = formik
 						return (
 							<Form>
