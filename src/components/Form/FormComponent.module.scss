@@ -6,12 +6,13 @@
   margin: 140px auto 104px;
 
   @media (max-width: 567px) {
-    width: 360px;
+    max-width: 360px;
+    width: 100%;
     @include padding360()
   }
 
   form {
-    @include flex(null, center, column);
+    @include flex(null, flex-start, column);
   }
 
   h2 {
@@ -119,7 +120,6 @@
   }
 
   &__uploadFile {
-    margin-bottom: 50px;
     width: 100%;
     @include flex(flex-start);
   }
@@ -133,12 +133,21 @@
   }
 
   &__uploadText {
-    @include flex(flex-start);
-    align-items: center;
     width: 100%;
     padding: 14px 15px;
     border: 1px solid $border_color;
     border-radius: 0 4px 4px 0;
     overflow: hidden;
+  }
+
+  &FileError {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &Btn {
+    @include flex(center);
+    width: 100%;
+    margin-top: 50px;
   }
 }

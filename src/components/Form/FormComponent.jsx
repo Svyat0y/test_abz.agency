@@ -1,16 +1,16 @@
 import styles from './FormComponent.module.scss'
 
-import { useEffect, useState } from 'react'
-import { fetchPositions }      from '../../api/api'
+import React, { useEffect, useState } from 'react'
+import { fetchPositions }             from '../../api/api'
 
 import { Formik, Form }     from 'formik'
 import { validationSchema } from '../../validators'
 
-import { InputText, RadioButtons } from '../Inputs'
+import { InputFileUpload, InputText, RadioButtons } from '../Inputs'
+import { TextError }                                from '../TextError'
 
 
 const FormComponent = ({ formRef }) => {
-	const [ image, setImage ] = useState()
 	const [ radioOptions, setRadioOptions ] = useState([])
 
 	useEffect(() => {
@@ -22,17 +22,12 @@ const FormComponent = ({ formRef }) => {
 		email: '',
 		phone: '',
 		radio: '',
+		file: null,
 	}
 
 	const onSubmit = (values, onSubmitProps) => {
 		console.log(values)
 		onSubmitProps.resetForm()
-	}
-
-	const handleChange = (event) => {
-		const [ file ] = event.target.files
-		event.preventDefault()
-		setImage(file.name)
 	}
 
 	const handleFocus = (e, form) => {
@@ -53,6 +48,8 @@ const FormComponent = ({ formRef }) => {
 			>
 				{
 					(formik) => {
+						console.log(formik)
+						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched } = formik
 						return (
 							<Form>
 								<InputText name='name' type='text' placeholder='Your name'/>
@@ -61,13 +58,19 @@ const FormComponent = ({ formRef }) => {
 								<div className={ styles.form__radios }>
 									<RadioButtons label='Select your position' name='radio' options={ radioOptions }/>
 								</div>
-								<div className={ styles.form__uploadFile }>
-									<label className={ styles.form__customBtn } htmlFor='file'>Upload</label>
-									<input onChange={ handleChange } className={ styles.form__inputBtn } type='file' id='file'
-										   accept='image/jpeg, image/png'/>
-									<span className={ styles.form__uploadText }>{ image ? image : 'Upload your photo' }</span>
+								<InputFileUpload setFieldValue={ setFieldValue }
+												 setFieldTouched={ setFieldTouched }
+												 values={ values }
+												 errors={ errors }
+												 touched={ touched }
+								/>
+								<div className={ styles.formBtn }>
+									<button disabled={ !(dirty && isValid) }
+											className='btn'
+											type='submit'>
+										Sign up
+									</button>
 								</div>
-								<button disabled={ !(formik.dirty && formik.isValid) } className='btn' type='submit'>Sign up</button>
 							</Form>
 						)
 					}
