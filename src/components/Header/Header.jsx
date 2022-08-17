@@ -5,11 +5,15 @@ import logo   from '../../assets/images/logo.svg'
 const Header = ({ contentRef, formRef }) => {
 
 	const scrollToContent = () => {
-		contentRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' })
+		setTimeout(() => {
+			contentRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' })
+		}, 100)
 	}
 
 	const scrollToForm = () => {
-		formRef.current.scrollIntoView({ behavior: 'smooth' })
+		setTimeout(() => {
+			formRef.current.scrollIntoView({ behavior: 'smooth' })
+		}, 100)
 	}
 
 	return (

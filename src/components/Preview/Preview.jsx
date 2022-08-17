@@ -4,9 +4,11 @@ import styles from './Preview.module.scss'
 const Preview = ({ formRef }) => {
 
 	const scrollToForm = () => {
-		formRef.current.scrollIntoView({ behavior: 'smooth' })
+		setTimeout(() => {
+			formRef.current.scrollIntoView({ behavior: 'smooth' })
+		}, 100)
 	}
-	
+
 	return (
 		<div className={ styles.preview }>
 			<div className={ styles.preview__textBlock }>

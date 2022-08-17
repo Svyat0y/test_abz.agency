@@ -21,13 +21,17 @@ const Content = ({ contentRef }) => {
 			setTotalPages(total_pages)
 			setCurrentPage(page)
 			setUsersData(users)
-			setIsLoading(false)
+			setTimeout(() => {
+				setIsLoading(false)
+			}, 300)
 		})
 	}, [ currentPage ])
 
 	const showMore = () => {
 		setCurrentPage((prevState) => prevState + 1)
-		usersTitleRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' })
+		setTimeout(() => {
+			usersTitleRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' })
+		}, 500)
 	}
 
 	const sortedUsers = usersData.sort((a, b) => b.registration_timestamp - a.registration_timestamp)
