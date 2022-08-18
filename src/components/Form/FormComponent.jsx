@@ -21,6 +21,16 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 		fetchPositions().then(({ positions }) => setRadioOptions(positions))
 	}, [])
 
+	// const input = document.getElementById()
+
+	const autofillValues = {
+		name: '',
+		email: '',
+		phone: '',
+		radio: '',
+		file: '',
+	}
+
 	const initialValues = {
 		name: '',
 		email: '',

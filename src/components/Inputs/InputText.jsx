@@ -8,7 +8,7 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 	return (
 		<div className={ styles.form__input }>
 			<label htmlFor={ name }></label>
-			<Field autoComplete={ name } name={ name }>
+			<Field autocomplete="off" name={ name }>
 				{
 					({ field, meta, form }) => {
 						return (
