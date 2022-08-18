@@ -55,6 +55,7 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 		}
 	}
 
+
 	if ( isSubmit ) {
 		return (
 			<Success successRef={ successRef }/>
@@ -68,14 +69,15 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 				initialValues={ initialValues }
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
+				validateOnChange={ true }
 			>
 				{
 					(formik) => {
-						console.log(formik)
 
 						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting } = formik
 						return (
-							<Form>
+							<Form onChange={ (event) =>
+								(formik.errors['phone'] && formik.values['phone'] === 'phone') && formik.setFieldTouched('phone', true) }>
 								<InputText name='name' type='text' placeholder='Your name'/>
 								<InputText name='email' type='email' placeholder='Email'/>
 								<InputText handleFocus={ handleFocus } name='phone' type='tel' placeholder='Phone'/>
