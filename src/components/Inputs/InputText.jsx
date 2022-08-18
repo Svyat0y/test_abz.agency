@@ -12,22 +12,30 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 			<Field name={ name }>
 				{
 					({ field, meta, form }) => {
+						const validatePhone = (meta.error && meta.touched && field.value.length) || (meta.error && field.value.length) ? styles.error : ''
+						const validateOtherInputs = (meta.error && meta.touched) ? styles.error : ''
+						const validateInputs = name === 'phone'
+							? validatePhone
+							: validateOtherInputs
 
 						return (
-							<input
-								onFocus={ type === 'tel' ? e => handleFocus(e, form) : e => {} }
-								className={ meta.error && meta.touched ? styles.error : '' }
-								type={ type }
-								name={ name }
-								id={ field.name }
-								placeholder={ placeholder }
-								{ ...field }
-							/>
+							<>
+								<input
+									onFocus={ type === 'tel' ? e => handleFocus(e, form) : e => {} }
+									className={ validateInputs }
+									type={ type }
+									name={ name }
+									id={ field.name }
+									placeholder={ placeholder }
+									{ ...field }
+								/>
+								{ validateInputs && <ErrorMessage name={ name } component={ TextError }/> }
+							</>
 						)
 					}
 				}
 			</Field>
-			<ErrorMessage name={ name } component={ TextError }/>
+
 			{ type === 'tel' && <span>+38(XXX) XXX - XXX - XX</span> }
 		</div>
 	)

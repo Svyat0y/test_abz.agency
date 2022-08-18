@@ -70,9 +70,6 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
 				validateOnChange={ true }
-				initialTouched={ {
-					phone: true
-				} }
 			>
 				{
 					(formik) => {
