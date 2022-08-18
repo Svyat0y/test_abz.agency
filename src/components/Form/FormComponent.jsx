@@ -8,7 +8,6 @@ import { validationSchema } from '../../validators'
 
 import { InputFileUpload, InputText, RadioButtons } from '../Inputs'
 import Success                                      from './Success'
-import AutofillSync                                 from './AutofillSync'
 
 
 const FormComponent = ({ formRef, setReloadItems }) => {
@@ -21,16 +20,6 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 	useEffect(() => {
 		fetchPositions().then(({ positions }) => setRadioOptions(positions))
 	}, [])
-
-	// const input = document.getElementById()
-
-	const autofillValues = {
-		name: '',
-		email: '',
-		phone: '',
-		radio: '',
-		file: '',
-	}
 
 	const initialValues = {
 		name: '',
@@ -82,11 +71,11 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 			>
 				{
 					(formik) => {
+						{ formik.values['phone'] === 'phone' && formik.values['phone'] && formik.setFieldTouched('phone', true)}
 
 						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting } = formik
 						return (
 							<Form>
-								<AutofillSync props={ formik }/>
 								<InputText name='name' type='text' placeholder='Your name'/>
 								<InputText name='email' type='email' placeholder='Email'/>
 								<InputText handleFocus={ handleFocus } name='phone' type='tel' placeholder='Phone'/>
