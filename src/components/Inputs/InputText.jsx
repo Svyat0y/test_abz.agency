@@ -6,6 +6,11 @@ import { TextError } from '../TextError'
 
 const InputText = ({ name, type, placeholder, handleFocus }) => {
 
+	const renderHelperText = (name) => {
+		if ( name === 'name' ) return 'Name should contain 2-60 characters'
+		if ( name === 'email' ) return 'example@dimain.com'
+	}
+
 	return (
 		<div className={ styles.form__input }>
 			<label htmlFor={ name }></label>
@@ -13,6 +18,8 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 				{
 					({ field, meta, form }) => {
 						const validateInputs = (meta.error && meta.touched) || (meta.error && !meta.touched && field.value) ? styles.error : ''
+						const helperText = (field.name !== 'phone' && !meta.error) &&
+							<span>{ renderHelperText(field.name) }</span>
 
 						return (
 							<>
@@ -25,13 +32,13 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 									placeholder={ placeholder }
 									{ ...field }
 								/>
-								{ validateInputs && <TextError>{ meta.error }</TextError> }
+								{ validateInputs ? <TextError>{ meta.error }</TextError> : helperText }
 							</>
 						)
 					}
 				}
 			</Field>
-			{ type === 'tel' && <span>+38(XXX) XXX - XXX - XX</span> }
+			{ name === 'phone' && <span>+38(XXX) XXX - XXX - XX</span> }
 		</div>
 	)
 }

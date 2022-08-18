@@ -62,7 +62,7 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 				initialValues={ initialValues }
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
-				validateOnMount={ true }
+				validateOnBlur={ false }
 			>
 				{
 					(formik) => {
