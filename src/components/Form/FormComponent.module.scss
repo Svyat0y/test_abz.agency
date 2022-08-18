@@ -77,7 +77,7 @@
     }
 
     input:checked + label::after {
-      opacity: 1;
+      transform: scale(1);
     }
 
     label {
@@ -107,7 +107,8 @@
       height: 10px;
       background: $bg_blue;
       border-radius: 50%;
-      opacity: 0;
+      transform: scale(0);
+      transition: .1s ease;
     }
   }
 
@@ -149,5 +150,42 @@
     @include flex(center);
     width: 100%;
     margin-top: 50px;
+    position: relative;
+  }
+
+  .submittingAnim button {
+    animation: animBtn 2s ease infinite;
+  }
+
+  @keyframes animBtn {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  &__errorMessage {
+    position: absolute;
+    text-align: center;
+    bottom: -60px;
+    width: 150%;
+    color: $red;
+    opacity: 1;
+    animation: hideMe 5s forwards;
+  }
+
+  &__success {
+    @include flex(center, center, column);
+    margin: 140px 0 160px 0;
+
+    img {
+      max-width: 328px;
+      margin-top: 50px;
+    }
   }
 }

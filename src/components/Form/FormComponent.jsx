@@ -1,7 +1,8 @@
-import styles from './FormComponent.module.scss'
+import styles     from './FormComponent.module.scss'
+import successImg from '../../assets/images/success-image.jpg'
 
-import React, { useEffect, useState } from 'react'
-import { fetchPositions }             from '../../api/api'
+import React, { useEffect, useRef, useState } from 'react'
+import { fetchPositions, registration }       from '../../api/api'
 
 import { Formik, Form }     from 'formik'
 import { validationSchema } from '../../validators'
@@ -11,6 +12,10 @@ import { InputFileUpload, InputText, RadioButtons } from '../Inputs'
 
 const FormComponent = ({ formRef }) => {
 	const [ radioOptions, setRadioOptions ] = useState([])
+	const [ isSubmit, setIsSubmit ] = useState(false)
+	const [ respError, setRespError ] = useState('')
+
+	const successRef = useRef()
 
 	useEffect(() => {
 		fetchPositions().then(({ positions }) => setRadioOptions(positions))
@@ -25,16 +30,38 @@ const FormComponent = ({ formRef }) => {
 	}
 
 	const onSubmit = (values, onSubmitProps) => {
-		console.log(values)
-		onSubmitProps.resetForm()
+		setIsSubmit(false)
+		registration(values).then(resp => {
+			if ( resp === 'ok' ) {
+				setIsSubmit(true)
+				onSubmitProps.resetForm()
+				onSubmitProps.setSubmitting(false)
+				setTimeout(() => successRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' }), 200)
+			}
+			if ( resp.error ) {
+				console.log(resp)
+				setRespError(resp.error)
+				setIsSubmit(false)
+				onSubmitProps.setSubmitting(false)
+			}
+		})
 	}
 
 	const handleFocus = (e, form) => {
 		const value = e.target.value
 
 		if ( !value.length ) {
-			form.setFieldValue('phone', '+380'.trim())
+			form.setFieldValue('phone', '+380')
 		}
+	}
+
+	if ( isSubmit ) {
+		return (
+			<div ref={ successRef } className={ styles.form__success }>
+				<h2 className='title'>User successfully registered</h2>
+				<img src={ successImg } alt='success'/>
+			</div>
+		)
 	}
 
 	return (
@@ -47,7 +74,9 @@ const FormComponent = ({ formRef }) => {
 			>
 				{
 					(formik) => {
-						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched } = formik
+
+						console.log(formik)
+						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting } = formik
 						return (
 							<Form>
 								<InputText name='name' type='text' placeholder='Your name'/>
@@ -62,12 +91,13 @@ const FormComponent = ({ formRef }) => {
 												 errors={ errors }
 												 touched={ touched }
 								/>
-								<div className={ styles.formBtn }>
-									<button disabled={ !(dirty && isValid) }
+								<div className={ `${ styles.formBtn } ${ isSubmitting && styles.submittingAnim }` }>
+									<button disabled={ !(dirty && isValid) || isSubmitting }
 											className='btn'
 											type='submit'>
 										Sign up
 									</button>
+									<span className={ styles.form__errorMessage }>{ respError ? respError : '' }</span>
 								</div>
 							</Form>
 						)
