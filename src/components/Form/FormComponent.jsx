@@ -70,10 +70,12 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
 				validateOnChange={ true }
+				initialTouched={ {
+					phone: true
+				} }
 			>
 				{
 					(formik) => {
-						console.log(formik)
 
 						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting } = formik
 						return (
