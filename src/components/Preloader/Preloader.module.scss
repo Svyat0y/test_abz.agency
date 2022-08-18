@@ -2,6 +2,11 @@
 
 .preloader__wrapper {
   @include flex(center, center);
+  height: 537px;
+
+  @media (max-width: 992px) {
+    height: 794px;
+  }
 }
 
 @-webkit-keyframes rotating {

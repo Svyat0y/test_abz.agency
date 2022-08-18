@@ -1,8 +1,8 @@
 import styles     from './FormComponent.module.scss'
 import successImg from '../../assets/images/success-image.jpg'
 
-import React, { useEffect, useRef, useState } from 'react'
-import { fetchPositions, registration }       from '../../api/api'
+import React, { useEffect, useRef, useState }       from 'react'
+import { fetchPositions, fetchUsers, registration } from '../../api/api'
 
 import { Formik, Form }     from 'formik'
 import { validationSchema } from '../../validators'
@@ -67,6 +67,7 @@ const FormComponent = ({ formRef }) => {
 	return (
 		<div ref={ formRef } className={ styles.form }>
 			<h2 className='title'>Working with POST request</h2>
+			<button onClick={ () => fetchUsers(2) }>dopustim</button>
 			<Formik
 				initialValues={ initialValues }
 				onSubmit={ onSubmit }
