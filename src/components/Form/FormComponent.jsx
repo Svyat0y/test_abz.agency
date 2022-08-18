@@ -71,7 +71,7 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 			>
 				{
 					(formik) => {
-						{ formik.values['phone'] === 'phone' && formik.values['phone'] && formik.setFieldTouched('phone', true)}
+						console.log(formik)
 
 						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting } = formik
 						return (
