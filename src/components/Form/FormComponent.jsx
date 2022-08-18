@@ -73,11 +73,11 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 			>
 				{
 					(formik) => {
+						console.log(formik)
 
 						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting } = formik
 						return (
-							<Form onChange={ (event) =>
-								(formik.errors['phone'] && formik.values['phone'] === 'phone') && formik.setFieldTouched('phone', true) }>
+							<Form autoComplete='off'>
 								<InputText name='name' type='text' placeholder='Your name'/>
 								<InputText name='email' type='email' placeholder='Email'/>
 								<InputText handleFocus={ handleFocus } name='phone' type='tel' placeholder='Phone'/>

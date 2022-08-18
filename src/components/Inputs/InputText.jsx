@@ -6,11 +6,10 @@ import { TextError }           from '../TextError'
 
 const InputText = ({ name, type, placeholder, handleFocus }) => {
 
-
 	return (
 		<div className={ styles.form__input }>
 			<label htmlFor={ name }></label>
-			<Field onChange autocomplete="tel" name={ name }>
+			<Field name={ name }>
 				{
 					({ field, meta, form }) => {
 
