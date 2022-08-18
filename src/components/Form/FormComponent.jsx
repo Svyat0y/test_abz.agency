@@ -8,6 +8,7 @@ import { validationSchema } from '../../validators'
 
 import { InputFileUpload, InputText, RadioButtons } from '../Inputs'
 import Success                                      from './Success'
+import AutofillSync                                 from './AutofillSync'
 
 
 const FormComponent = ({ formRef, setReloadItems }) => {
@@ -81,9 +82,11 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 			>
 				{
 					(formik) => {
+
 						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting } = formik
 						return (
 							<Form>
+								<AutofillSync props={ formik }/>
 								<InputText name='name' type='text' placeholder='Your name'/>
 								<InputText name='email' type='email' placeholder='Email'/>
 								<InputText handleFocus={ handleFocus } name='phone' type='tel' placeholder='Phone'/>
