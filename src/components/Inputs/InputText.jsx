@@ -12,7 +12,7 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 			<Field name={ name }>
 				{
 					({ field, meta, form }) => {
-						const validatePhone = (meta.error && meta.touched && field.value.length) || (meta.error && field.value.length) ? styles.error : ''
+						const validatePhone = (meta.error && meta.touched) || (meta.error && !meta.touched && field.value) ? styles.error : ''
 						const validateOtherInputs = (meta.error && meta.touched) ? styles.error : ''
 						const validateInputs = name === 'phone'
 							? validatePhone
@@ -29,7 +29,8 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 									placeholder={ placeholder }
 									{ ...field }
 								/>
-								{ validateInputs && <ErrorMessage name={ name } component={ TextError }/> }
+
+								{ validateInputs && <TextError>{ meta.error }</TextError> }
 							</>
 						)
 					}

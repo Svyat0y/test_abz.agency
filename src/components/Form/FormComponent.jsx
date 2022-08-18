@@ -69,7 +69,6 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 				initialValues={ initialValues }
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
-				validateOnChange={ true }
 			>
 				{
 					(formik) => {
