@@ -42,8 +42,12 @@ export const registration = async (formData) => {
 		if ( data.status.toString()[0] === '2' ) return 'ok'
 	}
 	catch ( e ) {
-		if ( e.response.status === 409 || e.response.status === 401 ) {
+		if ( e.response.status === 409 ) {
 			return { error: e.response.data.message }
+		}
+		if ( e.response.status === 401 ) {
+			console.log({ error: e.response.data.message })
+			return { error: 'Something went wrong, please try again later' }
 		}
 	}
 }
