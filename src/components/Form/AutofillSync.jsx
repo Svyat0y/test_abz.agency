@@ -13,7 +13,7 @@ const AutofillSync = ({ props }) => {
 				props.setValues({
 					name: document.querySelector('input[name="email"]')?.value,
 					email: document.querySelector('input[name="email"]')?.value,
-					phone: document.querySelector('input[name="phone"]')?.value
+					phone: '5151515'
 				})
 			}
 		}
