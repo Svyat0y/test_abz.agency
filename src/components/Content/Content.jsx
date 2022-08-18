@@ -1,29 +1,10 @@
 import styles      from './Content.module.scss'
 import emptyAvatar from '../../assets/images/photo-cover.svg'
 
-import { useEffect, useState } from 'react'
-import { fetchUsers }          from '../../api/api'
-
 import { Preloader } from '../index'
 
 
-const Content = ({ usersTitleRef }) => {
-	const [ usersData, setUsersData ] = useState([])
-	const [ currentPage, setCurrentPage ] = useState(1)
-	const [ totalPages, setTotalPages ] = useState(0)
-	const [ isLoading, setIsLoading ] = useState(false)
-
-	useEffect(() => {
-		setIsLoading(true)
-		fetchUsers(currentPage).then(({ total_pages, page, users }) => {
-			setTotalPages(total_pages)
-			setCurrentPage(page)
-			setUsersData(users)
-			setTimeout(() => {
-				setIsLoading(false)
-			}, 300)
-		})
-	}, [ currentPage ])
+const Content = ({ usersTitleRef, usersData, isLoading, currentPage, totalPages, setCurrentPage }) => {
 
 	const showMore = () => {
 		setCurrentPage((prevState) => prevState + 1)
@@ -63,7 +44,6 @@ const Content = ({ usersTitleRef }) => {
 			</div>
 		)
 	}
-
 
 	return (
 		<div className={ styles.content }>

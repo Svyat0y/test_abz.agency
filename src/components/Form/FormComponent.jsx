@@ -1,5 +1,4 @@
-import styles     from './FormComponent.module.scss'
-import successImg from '../../assets/images/success-image.jpg'
+import styles from './FormComponent.module.scss'
 
 import React, { useEffect, useRef, useState } from 'react'
 import { fetchPositions, registration }       from '../../api/api'
@@ -8,9 +7,10 @@ import { Formik, Form }     from 'formik'
 import { validationSchema } from '../../validators'
 
 import { InputFileUpload, InputText, RadioButtons } from '../Inputs'
+import Success                                      from './Success'
 
 
-const FormComponent = ({ formRef }) => {
+const FormComponent = ({ formRef, setReloadItems }) => {
 	const [ radioOptions, setRadioOptions ] = useState([])
 	const [ isSubmit, setIsSubmit ] = useState(false)
 	const [ respError, setRespError ] = useState('')
@@ -37,6 +37,7 @@ const FormComponent = ({ formRef }) => {
 				onSubmitProps.resetForm()
 				onSubmitProps.setSubmitting(false)
 				setTimeout(() => successRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' }), 200)
+				setTimeout(() => setReloadItems(true), 500)
 			}
 			if ( resp.error ) {
 				setRespError(resp.error)
@@ -56,10 +57,7 @@ const FormComponent = ({ formRef }) => {
 
 	if ( isSubmit ) {
 		return (
-			<div ref={ successRef } className={ styles.form__success }>
-				<h2 className='title'>User successfully registered</h2>
-				<img src={ successImg } alt='success'/>
-			</div>
+			<Success successRef={ successRef }/>
 		)
 	}
 
