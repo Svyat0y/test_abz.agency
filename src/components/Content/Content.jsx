@@ -29,15 +29,15 @@ const Content = ({ usersTitleRef, usersData, isLoading, currentPage, totalPages,
 							<span title={ item.name } className={ styles.content__itemTitle }>
 							{ item.name }
 							</span>
-							<span title={ item.position } className={ styles.content__itemInfo }>
+							<span className={ styles.content__itemInfo }>
 							{ item.position }
 							</span>
-							<a title={ item.email } href={ item.email } className={ styles.content__itemInfo }>
+							<span title={ item.email } className={ styles.content__itemInfo }>
 								{ item.email }
-							</a>
-							<a title={ item.phone } href={ item.phone } className={ styles.content__itemInfo }>
+							</span>
+							<span className={ styles.content__itemInfo }>
 								{ item.phone }
-							</a>
+							</span>
 						</div>
 					)
 				}

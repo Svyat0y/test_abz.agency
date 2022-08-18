@@ -1,7 +1,7 @@
 import styles from '../Form/FormComponent.module.scss'
 
-import { ErrorMessage, Field } from 'formik'
-import { TextError }           from '../TextError'
+import { Field }     from 'formik'
+import { TextError } from '../TextError'
 
 
 const InputText = ({ name, type, placeholder, handleFocus }) => {
@@ -12,11 +12,7 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 			<Field name={ name }>
 				{
 					({ field, meta, form }) => {
-						const validatePhone = (meta.error && meta.touched) || (meta.error && !meta.touched && field.value) ? styles.error : ''
-						const validateOtherInputs = (meta.error && meta.touched) ? styles.error : ''
-						const validateInputs = name === 'phone'
-							? validatePhone
-							: validateOtherInputs
+						const validateInputs = (meta.error && meta.touched) || (meta.error && !meta.touched && field.value) ? styles.error : ''
 
 						return (
 							<>
@@ -29,14 +25,12 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 									placeholder={ placeholder }
 									{ ...field }
 								/>
-
 								{ validateInputs && <TextError>{ meta.error }</TextError> }
 							</>
 						)
 					}
 				}
 			</Field>
-
 			{ type === 'tel' && <span>+38(XXX) XXX - XXX - XX</span> }
 		</div>
 	)

@@ -50,17 +50,10 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 	const handleFocus = (e, form) => {
 		const value = e.target.value
 
-		if ( !value.length ) {
-			form.setFieldValue('phone', '+380')
-		}
+		if ( !value.length ) form.setFieldValue('phone', '+380')
 	}
 
-
-	if ( isSubmit ) {
-		return (
-			<Success successRef={ successRef }/>
-		)
-	}
+	if ( isSubmit ) return <Success successRef={ successRef }/>
 
 	return (
 		<div ref={ formRef } className={ styles.form }>
@@ -69,11 +62,12 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 				initialValues={ initialValues }
 				onSubmit={ onSubmit }
 				validationSchema={ validationSchema }
+				validateOnMount={ true }
 			>
 				{
 					(formik) => {
-
 						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting } = formik
+
 						return (
 							<Form autoComplete='off'>
 								<InputText name='name' type='text' placeholder='Your name'/>
