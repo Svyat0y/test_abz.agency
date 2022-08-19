@@ -18,25 +18,23 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 			<Field name={ name }>
 				{
 					({ field, meta, form }) => {
-						const validateInputs = (meta.error && meta.touched) || (meta.error && !meta.touched && field.value) ? styles.error : ''
-						const helperText = ((!meta.touched && !meta.error) || (meta.touched && !meta.error)) &&
-							<span>{ renderHelperText(field.name) }</span>
+						/*						const validateInputs = (meta.error && meta.touched) || (meta.error && !meta.touched && field.value) ? styles.error : ''
+												const helperText = ((!meta.touched && !meta.error) || (meta.touched && !meta.error)) &&
+													<span>{ renderHelperText(field.name) }</span>*/
 
 						return (
 							<>
 								<input
 									onFocus={ type === 'tel' ? e => handleFocus(e, form) : e => {} }
-									className={ validateInputs }
-									onBlur={ form.handleBlur }
+									className={ (meta.error && meta.touched) ? styles.error : '' }
 									type={ type }
 									name={ name }
 									id={ field.name }
 									placeholder={ placeholder }
 									{ ...field }
 								/>
-								{ validateInputs
-									? <TextError>{ meta.error }</TextError>
-									: helperText }
+								{ (meta.error && meta.touched) ? <TextError>{ meta.error }</TextError> :
+									<span>{ renderHelperText(field.name) }</span> }
 							</>
 						)
 					}
