@@ -30,7 +30,7 @@ const FormComponent = ({formRef, setReloadingItems}) => {
 	const onSubmit = (values, onSubmitProps) => {
 		setIsSubmit(false)
 
-		import('../../api/api').then(api => api.registration()(values).then(resp => {
+		import('../../api/api').then(api => api.registration(values).then(resp => {
 			if (resp === 'ok') {
 				setIsSubmit(true)
 				onSubmitProps.resetForm()
