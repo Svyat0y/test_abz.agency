@@ -12,7 +12,7 @@ import Success                                      from './Success'
 
 const FormComponent = ({ formRef, setReloadingItems }) => {
 	const [ radioOptions, setRadioOptions ] = useState([])
-	const [ isSubmit, setIsSubmit ] = useState(false)
+	const [ isSubmit, setIsSubmit ] = useState(true)
 	const [ respError, setRespError ] = useState('')
 
 	const successRef = useRef()
