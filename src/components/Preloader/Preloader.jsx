@@ -4,8 +4,8 @@ import preloader from '../../assets/images/Preloader.webp'
 
 const Preloader = () => {
 	return (
-		<div className={ styles.preloader__wrapper }>
-			<img className={ styles.rotating } src={ preloader } alt='preloader'/>
+		<div className={styles.preloader__wrapper}>
+			<img className={styles.rotating} src={preloader} alt='preloader'/>
 		</div>
 	)
 }

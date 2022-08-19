@@ -10,18 +10,18 @@ const instance = axios.create({
 
 export const fetchUsers = async (currentPage) => {
 	try {
-		const { data } = await instance.get(`users?page=${ currentPage }&count=6`)
+		const {data} = await instance.get(`users?page=${currentPage}&count=6`)
 		return data
 	}
-	catch ( e ) {console.log('error message:', e.message)}
+	catch (e) {console.log('error message:', e.message)}
 }
 
 export const fetchPositions = async () => {
 	try {
-		const { data } = await instance.get('positions')
+		const {data} = await instance.get('positions')
 		return data
 	}
-	catch ( e ) {console.log('error message', e.message)}
+	catch (e) {console.log('error message', e.message)}
 }
 
 export const registration = async (formData) => {
@@ -32,22 +32,21 @@ export const registration = async (formData) => {
 		position_id: formData.radio,
 		photo: formData.file
 	}
-
 	try {
 		const dataToken = await instance.get('token')
 		const data = await instance.post('users', body, {
-			headers: { 'Token': dataToken.data.token }
+			headers: {'Token': dataToken.data.token}
 		})
 
-		if ( data.status.toString()[0] === '2' ) return 'ok'
+		if (data.status.toString()[0] === '2') return 'ok'
 	}
-	catch ( e ) {
-		if ( e.response.status === 409 ) {
-			return { error: e.response.data.message }
+	catch (e) {
+		if (e.response.status === 409) {
+			return {error: e.response.data.message}
 		}
-		else if ( e.response.status === 401 ) {
-			console.log({ error: e.response.data.message })
-			return { error: 'Something went wrong, please try again later' }
+		else if (e.response.status === 401) {
+			console.log({error: e.response.data.message})
+			return {error: 'Something went wrong, please try again later'}
 		}
 		else {
 			throw new Error(e.response.data.message)

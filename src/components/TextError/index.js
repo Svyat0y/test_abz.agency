@@ -1,1 +1,1 @@
-export { default as TextError } from './TextError'
+export {default as TextError} from './TextError'
