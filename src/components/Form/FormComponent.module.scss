@@ -22,8 +22,9 @@
   }
 
   &__input {
-    margin-bottom: 25px;
     width: 100%;
+    position: relative;
+    margin-bottom: 50px;
 
     input {
       display: block;
@@ -35,13 +36,16 @@
       border: 1px solid $border_color;
       border-radius: 4px;
       outline: none;
+    }
 
-      &.error {
-        border: 2px solid $red;
-      }
+    .error {
+      border: 2px solid $red;
     }
 
     span {
+      position: absolute;
+      bottom: -16px;
+      left: 0;
       font-size: 12px;
       line-height: 14px;
       color: #7E7E7E;
@@ -50,7 +54,7 @@
   }
 
   &__radios {
-    margin-bottom: 47px;
+    padding-bottom: 47px;
     width: 100%;
     @include flex(null, null, column);
 
@@ -60,13 +64,14 @@
 
     &Wr {
       @include flex(center, flex-start, column);
+      position: relative;
     }
   }
 
   &__radio {
     margin-bottom: 10px;
 
-    &:last-child {
+    &:nth-last-child(2) {
       margin-bottom: 0;
     }
 
@@ -109,6 +114,13 @@
       border-radius: 50%;
       transform: scale(0);
       transition: .1s ease;
+    }
+
+    &Error {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
     }
   }
 

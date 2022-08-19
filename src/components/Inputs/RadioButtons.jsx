@@ -30,7 +30,7 @@ const RadioButtons = ({ label, name, options, ...rest }) => {
 					}
 				}
 			</Field>
-			<ErrorMessage name={ name } component={ TextError }/>
+			<div className={ styles.form__radioError }><ErrorMessage name={ name } component={ TextError }/></div>
 		</div>
 	)
 }
