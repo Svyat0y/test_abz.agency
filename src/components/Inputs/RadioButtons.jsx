@@ -1,3 +1,4 @@
+import React  from 'react'
 import styles from '../Form/FormComponent.module.scss'
 
 import { useState } from 'react'
@@ -17,8 +18,8 @@ const RadioButtons = ({ label, name, options, ...rest }) => {
 					({ field, meta }) => {
 						return options.map((option, i) => {
 							return (
-								<>
-									<div className={ styles.form__radio } key={ option.id }>
+								<React.Fragment key={ option.id }>
+									<div className={ styles.form__radio }>
 										<input
 											type='radio'
 											id={ option.id }
@@ -30,7 +31,7 @@ const RadioButtons = ({ label, name, options, ...rest }) => {
 										<label htmlFor={ option.id }>{ option.name }</label>
 									</div>
 									{ meta.touched && meta.error && setRadioError(meta.error) }
-								</>
+								</React.Fragment>
 							)
 						})
 					}

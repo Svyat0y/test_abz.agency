@@ -1,5 +1,5 @@
 import styles     from './FormComponent.module.scss'
-import successImg from '../../assets/images/success-image.jpg'
+import successImg from '../../assets/images/success-image.webp'
 
 
 const Success = ({ successRef }) => {

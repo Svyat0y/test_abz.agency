@@ -1,10 +1,8 @@
 import styles from './FormComponent.module.scss'
 
-import React, { useEffect, useRef, useState } from 'react'
-import { fetchPositions, registration }       from '../../api/api'
-
-import { Formik, Form }     from 'formik'
-import { validationSchema } from '../../validators'
+import { useEffect, useRef, useState } from 'react'
+import { Formik, Form }                from 'formik'
+import { validationSchema }            from '../../validators'
 
 import { InputFileUpload, InputText, RadioButtons } from '../Inputs'
 import Success                                      from './Success'
@@ -26,13 +24,13 @@ const FormComponent = ({ formRef, setReloadingItems }) => {
 	}
 
 	useEffect(() => {
-		fetchPositions().then(({ positions }) => setRadioOptions(positions))
+		import('../../api/api').then(api => api.fetchPositions().then(({ positions }) => setRadioOptions(positions)))
 	}, [])
 
 	const onSubmit = (values, onSubmitProps) => {
 		setIsSubmit(false)
 
-		registration(values).then(resp => {
+		import('../../api/api').then(api => api.registration()(values).then(resp => {
 			if ( resp === 'ok' ) {
 				setIsSubmit(true)
 				onSubmitProps.resetForm()
@@ -46,7 +44,7 @@ const FormComponent = ({ formRef, setReloadingItems }) => {
 				setIsSubmit(false)
 				onSubmitProps.setSubmitting(false)
 			}
-		})
+		}))
 	}
 
 	const handleFocus = (e, form) => {

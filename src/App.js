@@ -1,7 +1,10 @@
-import { Header, Preview, Content, FormComponent } from './components'
-import { useEffect, useRef, useState }             from 'react'
-import { fetchUsers }                              from './api/api'
+import React from 'react'
 
+import { Header, Preview, Content }    from './components'
+import { useEffect, useRef, useState } from 'react'
+
+
+const FormComponent = React.lazy(() => import('./components/Form/FormComponent'))
 
 function App() {
 	const [ usersData, setUsersData ] = useState([])
@@ -12,16 +15,17 @@ function App() {
 	const usersTitleRef = useRef()
 	const formRef = useRef()
 
+
 	useEffect(() => {
 		setIsLoading(true)
-		fetchUsers(currentPage).then(({ total_pages, page, users }) => {
+		import('./api/api').then(api => api.fetchUsers(currentPage).then(({ total_pages, page, users }) => {
 			setTotalPages(total_pages)
 			setCurrentPage(page)
 			setUsersData(users)
 			setTimeout(() => {
 				setIsLoading(false)
 			}, 300)
-		})
+		}))
 	}, [ currentPage, reloadingItems ])
 
 	return (
@@ -38,8 +42,10 @@ function App() {
 							 setCurrentPage={ setCurrentPage }
 
 							 usersTitleRef={ usersTitleRef }/>
-					<FormComponent formRef={ formRef }
-								   setReloadingItems={ setReloadingItems }/>
+					<React.Suspense fallback={ '' }>
+						<FormComponent formRef={ formRef }
+									   setReloadingItems={ setReloadingItems }/>
+					</React.Suspense>
 				</main>
 			</div>
 		</div>

@@ -1,5 +1,5 @@
 import styles    from './Preloader.module.scss'
-import preloader from '../../assets/images/Preloader.png'
+import preloader from '../../assets/images/Preloader.webp'
 
 
 const Preloader = () => {
