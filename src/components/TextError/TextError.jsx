@@ -1,10 +1,12 @@
 import styles from './TextError.module.scss'
 
 
-const TextError = ({ children }) => {
+const TextError = ({ name, error }) => {
 	return (
 		<div className={ styles.form__textError }>
-			{ children }
+			{ name === 'phone' &&
+				<span className={ styles.error }>Number should start with <span className={ styles.plus }>+</span>380 and numbers</span> }
+			{ name !== 'phone' && <span className={ styles.error }>{ error }</span> }
 		</div>
 	)
 }

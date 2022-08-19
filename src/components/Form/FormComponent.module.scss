@@ -41,16 +41,16 @@
     .error {
       border: 2px solid $red;
     }
+  }
 
-    span {
-      position: absolute;
-      bottom: -16px;
-      left: 0;
-      font-size: 12px;
-      line-height: 14px;
-      color: #7E7E7E;
-      margin-left: 16px;
-    }
+  &__helperText {
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    font-size: 12px;
+    line-height: 14px;
+    color: #7E7E7E;
+    margin-left: 16px;
   }
 
   &__radios {

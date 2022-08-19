@@ -53,7 +53,7 @@ const emailRegExr = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{
 export const validationSchema = Yup.object({
 	name: Yup.string().required('Enter your name').matches(/^[zA-zа-яА-Я ]+$/, 'Only lowercase and uppercase letters').min(2).max(62),
 	email: Yup.string().matches(emailRegExr, 'Wrong format').required('Enter your email'),
-	phone: Yup.string().matches(phoneRegExr, 'Phone number is not valid').required('Enter your phone number'),
+	phone: Yup.string().matches(phoneRegExr, 'Number should start with +380 and numbers').required('Enter your phone number'),
 	radio: Yup.string().required('Сhoose one option'),
 	file: Yup.mixed().required('photo required')
 		.test('fileSize', 'File too large', (value) => value === null || (value && value.size <= FILE_SIZE))
