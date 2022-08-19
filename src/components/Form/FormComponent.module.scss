@@ -54,17 +54,13 @@
   }
 
   &__radios {
-    padding-bottom: 47px;
+    margin-bottom: 47px;
     width: 100%;
+    position: relative;
     @include flex(null, null, column);
 
     label {
       margin-bottom: 14px;
-    }
-
-    &Wr {
-      @include flex(center, flex-start, column);
-      position: relative;
     }
   }
 

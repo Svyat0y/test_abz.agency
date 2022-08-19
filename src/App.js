@@ -8,7 +8,7 @@ function App() {
 	const [ currentPage, setCurrentPage ] = useState(1)
 	const [ totalPages, setTotalPages ] = useState(0)
 	const [ isLoading, setIsLoading ] = useState(false)
-	const [ reloadItems, setReloadItems ] = useState(false)
+	const [ reloadingItems, setReloadingItems ] = useState(false)
 	const usersTitleRef = useRef()
 	const formRef = useRef()
 
@@ -22,7 +22,7 @@ function App() {
 				setIsLoading(false)
 			}, 300)
 		})
-	}, [ currentPage, reloadItems ])
+	}, [ currentPage, reloadingItems ])
 
 	return (
 		<div className="App">
@@ -39,7 +39,7 @@ function App() {
 
 							 usersTitleRef={ usersTitleRef }/>
 					<FormComponent formRef={ formRef }
-								   setReloadItems={ setReloadItems }/>
+								   setReloadingItems={ setReloadingItems }/>
 				</main>
 			</div>
 		</div>
@@ -47,4 +47,3 @@ function App() {
 }
 
 export default App
- 

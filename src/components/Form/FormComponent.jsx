@@ -10,16 +10,12 @@ import { InputFileUpload, InputText, RadioButtons } from '../Inputs'
 import Success                                      from './Success'
 
 
-const FormComponent = ({ formRef, setReloadItems }) => {
+const FormComponent = ({ formRef, setReloadingItems }) => {
 	const [ radioOptions, setRadioOptions ] = useState([])
 	const [ isSubmit, setIsSubmit ] = useState(false)
 	const [ respError, setRespError ] = useState('')
 
 	const successRef = useRef()
-
-	useEffect(() => {
-		fetchPositions().then(({ positions }) => setRadioOptions(positions))
-	}, [])
 
 	const initialValues = {
 		name: '',
@@ -29,16 +25,22 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 		file: '',
 	}
 
+	useEffect(() => {
+		fetchPositions().then(({ positions }) => setRadioOptions(positions))
+	}, [])
+
 	const onSubmit = (values, onSubmitProps) => {
 		setIsSubmit(false)
+
 		registration(values).then(resp => {
 			if ( resp === 'ok' ) {
 				setIsSubmit(true)
 				onSubmitProps.resetForm()
 				onSubmitProps.setSubmitting(false)
 				setTimeout(() => successRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' }), 200)
-				setTimeout(() => setReloadItems(true), 500)
+				setTimeout(() => setReloadingItems(true), 500)
 			}
+
 			if ( resp.error ) {
 				setRespError(resp.error)
 				setIsSubmit(false)
@@ -72,7 +74,6 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 			>
 				{
 					(formik) => {
-						console.log(formik)
 						const { dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting } = formik
 
 						return (
@@ -80,9 +81,7 @@ const FormComponent = ({ formRef, setReloadItems }) => {
 								<InputText name='name' type='text' placeholder='Your name'/>
 								<InputText name='email' type='email' placeholder='Email'/>
 								<InputText handleFocus={ handleFocus } name='phone' type='tel' placeholder='Phone'/>
-								<div className={ styles.form__radios }>
-									<RadioButtons label='Select your position' name='radio' options={ radioOptions }/>
-								</div>
+								<RadioButtons label='Select your position' name='radio' options={ radioOptions }/>
 								<InputFileUpload setFieldValue={ setFieldValue }
 												 setFieldTouched={ setFieldTouched }
 												 values={ values }

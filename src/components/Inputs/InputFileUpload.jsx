@@ -7,6 +7,7 @@ const InputFileUpload = ({ setFieldValue, setFieldTouched, values, errors, touch
 
 	const handleChange = (event) => {
 		const file = event.target.files[0]
+		
 		setFieldValue('file', file)
 		setTimeout(() => setFieldTouched('file', true), 0)
 	}

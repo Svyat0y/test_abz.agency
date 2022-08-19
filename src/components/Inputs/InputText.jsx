@@ -18,10 +18,6 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 			<Field name={ name }>
 				{
 					({ field, meta, form }) => {
-						/*						const validateInputs = (meta.error && meta.touched) || (meta.error && !meta.touched && field.value) ? styles.error : ''
-												const helperText = ((!meta.touched && !meta.error) || (meta.touched && !meta.error)) &&
-													<span>{ renderHelperText(field.name) }</span>*/
-
 						return (
 							<>
 								<input
