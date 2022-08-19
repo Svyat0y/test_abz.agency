@@ -8,7 +8,7 @@ const InputText = ({ name, type, placeholder, handleFocus }) => {
 
 	const renderHelperText = (name) => {
 		if ( name === 'name' ) return 'Name should contain 2-60 characters'
-		if ( name === 'email' ) return 'example@dimain.com'
+		if ( name === 'email' ) return 'example@domain.com'
 		if ( name === 'phone' ) return '+38(XXX) XXX - XXX - XX'
 	}
 
