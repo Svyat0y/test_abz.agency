@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { Header, Preview }             from './components'
+import { Header, Preview, Content }    from './components'
 import { useEffect, useRef, useState } from 'react'
 
 
 const FormComponent = React.lazy(() => import('./components/Form/FormComponent'))
-const Content = React.lazy(() => import('./components/Content/Content'))
 
 function App() {
 	const [ usersData, setUsersData ] = useState([])
@@ -15,6 +14,7 @@ function App() {
 	const [ reloadingItems, setReloadingItems ] = useState(false)
 	const usersTitleRef = useRef()
 	const formRef = useRef()
+
 
 	useEffect(() => {
 		setIsLoading(true)
@@ -35,15 +35,13 @@ function App() {
 						formRef={ formRef }/>
 				<main>
 					<Preview formRef={ formRef }/>
-					<React.Suspense fallback={ '' }>
-						<Content usersData={ usersData }
-								 isLoading={ isLoading }
-								 currentPage={ currentPage }
-								 totalPages={ totalPages }
-								 setCurrentPage={ setCurrentPage }
+					<Content usersData={ usersData }
+							 isLoading={ isLoading }
+							 currentPage={ currentPage }
+							 totalPages={ totalPages }
+							 setCurrentPage={ setCurrentPage }
 
-								 usersTitleRef={ usersTitleRef }/>
-					</React.Suspense>
+							 usersTitleRef={ usersTitleRef }/>
 					<React.Suspense fallback={ '' }>
 						<FormComponent formRef={ formRef }
 									   setReloadingItems={ setReloadingItems }/>
