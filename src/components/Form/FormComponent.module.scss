@@ -66,11 +66,7 @@
 
   &__radio {
     margin-bottom: 10px;
-
-    &:nth-last-child(2) {
-      margin-bottom: 0;
-    }
-
+    
     input {
       -webkit-appearance: none;
       appearance: none;

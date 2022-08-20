@@ -21,13 +21,13 @@ const InputText = ({name, type, placeholder, handleFocus}) => {
 						return (
 							<>
 								<input
+									{...field}
 									onFocus={type === 'tel' ? e => handleFocus(e, form) : e => {}}
 									className={(meta.error && meta.touched) ? styles.error : ''}
 									type={type}
 									name={name}
 									id={field.name}
 									placeholder={placeholder}
-									{...field}
 								/>
 								{(meta.error && meta.touched) ? <TextError name={field.name} error={meta.error}/> :
 									<span className={styles.form__helperText}>{renderHelperText(field.name)}</span>}

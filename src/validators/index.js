@@ -1,17 +1,17 @@
 import * as Yup from 'yup'
 
 
-/*export const checkImageRes = async (provideFile) => {
-	const imgRes = { width: null, height: null }
+const checkImageRes = async (provideFile) => {
+	const imgRes = {width: null, height: null}
 
 	return new Promise(resolve => {
 		const reader = new FileReader()
 
 		reader.readAsDataURL(provideFile)
-		reader.onload = function () {
+		reader.onload = function() {
 			const img = new Image()
 
-			img.onload = function () {
+			img.onload = function() {
 				imgRes.width = img.width
 				imgRes.height = img.height
 				resolve(imgRes)
@@ -20,15 +20,15 @@ import * as Yup from 'yup'
 	})
 }
 
-Yup.addMethod(Yup.mixed, 'imageDimensionCheck', function (message, requiredWidth, requiredHeight) {
-	return this.test('image-width-height-check', message, async function (value) {
-		const { path, createError } = this
-		if ( !value ) {
+Yup.addMethod(Yup.mixed, 'imageDimensionCheck', function(message, requiredWidth, requiredHeight) {
+	return this.test('image-width-height-check', message, async function(value) {
+		const {path, createError} = this
+		if (!value) {
 			return
 		}
 
 		const imgDimensions = await checkImageRes(value)
-		if ( imgDimensions.width < requiredWidth || imgDimensions.height < requiredHeight ) {
+		if (imgDimensions.width < requiredWidth || imgDimensions.height < requiredHeight) {
 			console.log(imgDimensions.width, imgDimensions.height)
 			return createError({
 				path,
@@ -38,7 +38,7 @@ Yup.addMethod(Yup.mixed, 'imageDimensionCheck', function (message, requiredWidth
 
 		return true
 	})
-})*/
+})
 
 
 const FILE_SIZE = 5 * 1024 * 1024
@@ -55,9 +55,9 @@ export const validationSchema = Yup.object({
 	email: Yup.string().matches(emailRegExr, 'Wrong format').required('Enter your email'),
 	phone: Yup.string().matches(phoneRegExr, 'Number should start with +380 and numbers').required('Enter your phone number'),
 	radio: Yup.string().required('Сhoose one option'),
-	file: Yup.mixed().required('photo required').test('fileSize', 'File too large', (value) => value === null || (value && value.size <= FILE_SIZE)).test(
+	file: Yup.mixed().required('photo required').test('fileSize', 'File too large', (value) => value == null || (value && value.size <= FILE_SIZE)).test(
 		'fileFormat',
 		'Unsupported file type',
-		(value) => value === null || (value && SUPPORTED_FORMATS.includes(value.type))
+		(value) => value == null || (value && SUPPORTED_FORMATS.includes(value.type))
 	)
 })
