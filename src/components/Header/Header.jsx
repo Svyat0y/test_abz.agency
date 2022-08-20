@@ -2,11 +2,11 @@ import styles from './Header.module.scss'
 import logo   from '../../assets/images/logo.svg'
 
 
-const Header = ({usersTitleRef, formRef}) => {
+const Header = ({usersContentRef, formRef}) => {
 
 	const scrollToContent = () => {
 		setTimeout(() => {
-			usersTitleRef.current.scrollIntoView({block: 'start', behavior: 'smooth'})
+			usersContentRef.current.scrollIntoView({block: 'start', behavior: 'smooth'})
 		}, 100)
 	}
 

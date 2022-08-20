@@ -12,7 +12,7 @@ function App() {
 	const [totalPages, setTotalPages] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
 	const [reloadingItems, setReloadingItems] = useState(false)
-	const usersTitleRef = useRef()
+	const usersContentRef = useRef()
 	const formRef = useRef()
 
 
@@ -31,8 +31,7 @@ function App() {
 	return (
 		<div className="App">
 			<div className='container'>
-				<Header usersTitleRef={usersTitleRef}
-						formRef={formRef}/>
+				<Header usersContentRef={usersContentRef} formRef={formRef}/>
 				<main>
 					<Preview formRef={formRef}/>
 					<Content usersData={usersData}
@@ -40,11 +39,9 @@ function App() {
 							 currentPage={currentPage}
 							 totalPages={totalPages}
 							 setCurrentPage={setCurrentPage}
-
-							 usersTitleRef={usersTitleRef}/>
+							 usersContentRef={usersContentRef}/>
 					<React.Suspense fallback={''}>
-						<FormComponent formRef={formRef}
-									   setReloadingItems={setReloadingItems}/>
+						<FormComponent formRef={formRef} setReloadingItems={setReloadingItems}/>
 					</React.Suspense>
 				</main>
 			</div>

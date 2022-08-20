@@ -4,12 +4,12 @@ import emptyAvatar from '../../assets/images/photo-cover.svg'
 import {Preloader} from '../index'
 
 
-const Content = ({usersTitleRef, usersData, isLoading, currentPage, totalPages, setCurrentPage}) => {
+const Content = ({usersContentRef, usersData, isLoading, currentPage, totalPages, setCurrentPage}) => {
 
 	const showMore = () => {
 		setCurrentPage((prevState) => prevState + 1)
 		setTimeout(() => {
-			usersTitleRef.current.scrollIntoView({block: 'start', behavior: 'smooth'})
+			usersContentRef.current.scrollIntoView({block: 'start', behavior: 'smooth'})
 		}, 500)
 	}
 
@@ -46,8 +46,8 @@ const Content = ({usersTitleRef, usersData, isLoading, currentPage, totalPages, 
 	}
 
 	return (
-		<div className={styles.content}>
-			<h2 ref={usersTitleRef} className='title'>Working with GET request</h2>
+		<div ref={usersContentRef} className={styles.content}>
+			<h2 className='title'>Working with GET request</h2>
 			{
 				!isLoading
 					? renderUsers()
