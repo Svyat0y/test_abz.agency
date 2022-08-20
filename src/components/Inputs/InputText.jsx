@@ -29,7 +29,7 @@ const InputText = ({name, type, placeholder, handleFocus}) => {
 									id={field.name}
 									placeholder={placeholder}
 								/>
-								{(meta.error && meta.touched) ? <TextError name={field.name} error={meta.error}/> :
+								{(meta.error && meta.touched) ? <TextError name={field.name}>{meta.error}</TextError> :
 									<span className={styles.form__helperText}>{renderHelperText(field.name)}</span>}
 							</>
 						)
