@@ -55,7 +55,7 @@ export const validationSchema = Yup.object({
 	email: Yup.string().matches(emailRegExr, 'Wrong format').required('Enter your email'),
 	phone: Yup.string().matches(phoneRegExr, 'Number should start with +380 and numbers').required('Enter your phone number'),
 	radio: Yup.string().required('Сhoose one option'),
-	file: Yup.mixed().required('photo required').test('fileSize', 'File too large', (value) => value == null || (value && value.size <= FILE_SIZE)).test(
+	file: Yup.mixed().required('photo required').test('fileSize', 'The photo may not be greater than 5 Mbytes', (value) => value == null || (value && value.size <= FILE_SIZE)).test(
 		'fileFormat',
 		'Unsupported file type',
 		(value) => value == null || (value && SUPPORTED_FORMATS.includes(value.type))

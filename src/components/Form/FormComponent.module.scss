@@ -1,6 +1,5 @@
 @import './src/scss/variables';
 
-//form
 .form {
   width: 380px;
   margin: 140px auto 104px;
@@ -66,7 +65,7 @@
 
   &__radio {
     margin-bottom: 10px;
-    
+
     input {
       -webkit-appearance: none;
       appearance: none;
@@ -126,6 +125,7 @@
 
   &__uploadFile {
     width: 100%;
+    position: relative;
     @include flex(flex-start);
   }
 
@@ -146,8 +146,9 @@
   }
 
   &FileError {
-    display: flex;
-    justify-content: flex-start;
+    position: relative;
+    @include flex(flex-start);
+    width: 100%;
   }
 
   &Btn {
