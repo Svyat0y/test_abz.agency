@@ -28,7 +28,7 @@ const InputFileUpload = ({setFieldValue, setFieldTouched, values, errors, touche
 			</div>
 			{
 				(errors['file'] && touched['file'])
-					? <div className={styles.formFileError}><TextError name='file'>{errors['file']}</TextError></div>
+					? <div className={styles.formFileError}><TextError>{errors['file']}</TextError></div>
 					: ''
 			}
 		</>

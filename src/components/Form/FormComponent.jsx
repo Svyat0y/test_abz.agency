@@ -69,9 +69,11 @@ const FormComponent = ({formRef, setReloadingItems}) => {
 				onSubmit={onSubmit}
 				validationSchema={validationSchema}
 				validateOnBlur={false}
+				validateOnMount={true}
 			>
 				{
 					(formik) => {
+						console.log(formik)
 						const {dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting} = formik
 
 						return (
@@ -87,7 +89,7 @@ const FormComponent = ({formRef, setReloadingItems}) => {
 												 touched={touched}
 								/>
 								<div className={`${styles.formBtn} ${isSubmitting && styles.submittingAnim}`}>
-									<button disabled={!(dirty && isValid) || isSubmitting}
+									<button disabled={!(isValid && dirty) || isSubmitting}
 											className='btn'
 											type='submit'>
 										Sign up

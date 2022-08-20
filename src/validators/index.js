@@ -7,9 +7,11 @@ const checkImageRes = async (provideFile) => {
 	return new Promise(resolve => {
 		const reader = new FileReader()
 
+
 		reader.readAsDataURL(provideFile)
 		reader.onload = function() {
 			const img = new Image()
+			img.src = reader.result
 
 			img.onload = function() {
 				imgRes.width = img.width
@@ -32,10 +34,9 @@ Yup.addMethod(Yup.mixed, 'imageDimensionCheck', function(message, requiredWidth,
 			console.log(imgDimensions.width, imgDimensions.height)
 			return createError({
 				path,
-				message: 'The photo resolution must be 70x70 px!'
+				message: 'Minimum size of photo 70x70px'
 			})
 		}
-
 		return true
 	})
 })
@@ -51,13 +52,12 @@ const phoneRegExr = /^[+]{0,1}380([0-9]{9})$/
 const emailRegExr = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)])$/
 
 export const validationSchema = Yup.object({
-	name: Yup.string().required('Enter your name').matches(/^[zA-zа-яА-Я ]+$/, 'Only lowercase and uppercase letters').min(2).max(62),
-	email: Yup.string().matches(emailRegExr, 'Wrong format').required('Enter your email'),
-	phone: Yup.string().matches(phoneRegExr, 'Number should start with +380 and numbers').required('Enter your phone number'),
-	radio: Yup.string().required('Сhoose one option'),
-	file: Yup.mixed().required('photo required').test('fileSize', 'The photo may not be greater than 5 Mbytes', (value) => value == null || (value && value.size <= FILE_SIZE)).test(
+	name: Yup.string().required('Name is required').matches(/^[zA-zа-яА-Я ]+$/, 'Only lowercase and uppercase letters').min(2).max(62),
+	email: Yup.string().required('Email is required').matches(emailRegExr, 'Wrong format'),
+	phone: Yup.string().required('Phone number is required').matches(phoneRegExr, 'Number should start with +380 and numbers'),
+	radio: Yup.string().required('Option is required'),
+	file: Yup.mixed().required('').test('fileSize', 'The photo may not be greater than 5 Mbytes', (value) => value == null || (value && value.size <= FILE_SIZE)).test(
 		'fileFormat',
 		'Unsupported file type',
-		(value) => value == null || (value && SUPPORTED_FORMATS.includes(value.type))
-	)
+		(value) => value == null || (value && SUPPORTED_FORMATS.includes(value.type))).imageDimensionCheck('', 70, 70)
 })
