@@ -8,6 +8,7 @@ const instance = axios.create({
 	}
 })
 
+
 export const fetchUsers = async (currentPage) => {
 	try {
 		const {data} = await instance.get(`users?page=${currentPage}&count=6`)
@@ -24,14 +25,9 @@ export const fetchPositions = async () => {
 	catch (e) {console.log('error message', e.message)}
 }
 
-export const registration = async (formData) => {
-	const body = {
-		name: formData.name,
-		email: formData.email,
-		phone: formData.phone,
-		position_id: formData.radio,
-		photo: formData.file
-	}
+export const fetchRegistration = async ({name, email, phone, radio: position_id, file: photo}) => {
+	const body = {name, email, phone, photo, position_id,}
+
 	try {
 		const dataToken = await instance.get('token')
 		const data = await instance.post('users', body, {
@@ -40,6 +36,7 @@ export const registration = async (formData) => {
 
 		if (data.status.toString()[0] === '2') return 'ok'
 	}
+	
 	catch (e) {
 		if (e.response.status === 409) {
 			return {error: e.response.data.message}

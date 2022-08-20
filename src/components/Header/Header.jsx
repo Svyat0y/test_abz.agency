@@ -4,15 +4,9 @@ import logo   from '../../assets/images/logo.svg'
 
 const Header = ({usersContentRef, formRef}) => {
 
-	const scrollToContent = () => {
+	const scrollToElement = (element) => {
 		setTimeout(() => {
-			usersContentRef.current.scrollIntoView({block: 'start', behavior: 'smooth'})
-		}, 100)
-	}
-
-	const scrollToForm = () => {
-		setTimeout(() => {
-			formRef.current.scrollIntoView({behavior: 'smooth'})
+			element.current.scrollIntoView({block: 'start', behavior: 'smooth'})
 		}, 100)
 	}
 
@@ -22,8 +16,8 @@ const Header = ({usersContentRef, formRef}) => {
 				<img src={logo} alt='logo'/>
 			</div>
 			<div>
-				<button onClick={scrollToContent} className={`btn ${styles.headerBtn}`}>Users</button>
-				<button onClick={scrollToForm} className='btn header-btn'>Sign up</button>
+				<button onClick={() => scrollToElement(usersContentRef)} className={`btn ${styles.headerBtn}`}>Users</button>
+				<button onClick={() => scrollToElement(formRef)} className='btn header-btn'>Sign up</button>
 			</div>
 		</header>
 	)

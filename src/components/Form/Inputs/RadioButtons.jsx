@@ -1,9 +1,8 @@
 import React  from 'react'
-import styles from '../Form/FormComponent.module.scss'
+import styles from '../FormComponent.module.scss'
 
 import {ErrorMessage, Field} from 'formik'
-
-import {TextError} from '../TextError'
+import {TextError}           from '../../index'
 
 
 const RadioButtons = ({label, name, options, ...rest}) => {

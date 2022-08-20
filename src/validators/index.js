@@ -1,12 +1,12 @@
 import * as Yup from 'yup'
 
 
+//get photo resolution
 const checkImageRes = async (provideFile) => {
 	const imgRes = {width: null, height: null}
 
 	return new Promise(resolve => {
 		const reader = new FileReader()
-
 
 		reader.readAsDataURL(provideFile)
 		reader.onload = function() {
@@ -22,6 +22,7 @@ const checkImageRes = async (provideFile) => {
 	})
 }
 
+//added new method to yup to check photo resolution
 Yup.addMethod(Yup.mixed, 'imageDimensionCheck', function(message, requiredWidth, requiredHeight) {
 	return this.test('image-width-height-check', message, async function(value) {
 		const {path, createError} = this
@@ -31,7 +32,6 @@ Yup.addMethod(Yup.mixed, 'imageDimensionCheck', function(message, requiredWidth,
 
 		const imgDimensions = await checkImageRes(value)
 		if (imgDimensions.width < requiredWidth || imgDimensions.height < requiredHeight) {
-			console.log(imgDimensions.width, imgDimensions.height)
 			return createError({
 				path,
 				message: 'Minimum size of photo 70x70px'

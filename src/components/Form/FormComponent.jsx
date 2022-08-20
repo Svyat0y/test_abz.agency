@@ -4,7 +4,7 @@ import {useEffect, useRef, useState} from 'react'
 import {Formik, Form}                from 'formik'
 import {validationSchema}            from '../../validators'
 
-import {InputFileUpload, InputText, RadioButtons} from '../Inputs'
+import {InputFileUpload, InputText, RadioButtons} from './Inputs'
 import Success                                    from './Success'
 
 
@@ -30,7 +30,7 @@ const FormComponent = ({formRef, setReloadingItems}) => {
 	const onSubmit = (values, onSubmitProps) => {
 		setIsSubmit(false)
 
-		import('../../api/api').then(api => api.registration(values).then(resp => {
+		import('../../api/api').then(api => api.fetchRegistration(values).then(resp => {
 			if (resp === 'ok') {
 				setIsSubmit(true)
 				onSubmitProps.resetForm()
@@ -53,6 +53,8 @@ const FormComponent = ({formRef, setReloadingItems}) => {
 		if (!value.length) form.setFieldValue('phone', '+380')
 	}
 
+	//we need this function in order for the validation to work on the phone field after autofilling the form from the browser when we
+	//perform the next action, for example, select the radio button
 	const handleChange = (_, formik) => {
 		if ((formik.values['phone'] && formik.errors['phone'])) {
 			formik.setFieldTouched('phone', true)
@@ -73,11 +75,10 @@ const FormComponent = ({formRef, setReloadingItems}) => {
 			>
 				{
 					(formik) => {
-						console.log(formik)
 						const {dirty, isValid, setFieldValue, setFieldTouched, values, errors, touched, isSubmitting} = formik
 
 						return (
-							<Form onChange={(event) => handleChange(event, formik)} autoComplete='off'>
+							<Form onChange={(event) => handleChange(event, formik)}>
 								<InputText name='name' type='text' placeholder='Your name'/>
 								<InputText name='email' type='email' placeholder='Email'/>
 								<InputText handleFocus={handleFocus} name='phone' type='tel' placeholder='Phone'/>

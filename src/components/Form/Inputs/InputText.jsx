@@ -1,15 +1,22 @@
-import styles from '../Form/FormComponent.module.scss'
+import styles from '../FormComponent.module.scss'
 
-import {Field}     from 'formik'
-import {TextError} from '../TextError'
+import {Field} from 'formik'
+
+import {TextError} from '../../index'
 
 
 const InputText = ({name, type, placeholder, handleFocus}) => {
-
 	const renderHelperText = (name) => {
-		if (name === 'name') return 'Name should contain 2-60 characters'
-		if (name === 'email') return 'example@domain.com'
-		if (name === 'phone') return '+38(XXX) XXX - XXX - XX'
+		switch (name) {
+			case 'name':
+				return 'Name should contain 2-60 characters'
+			case 'email':
+				return 'example@domain.com'
+			case 'phone':
+				return '+38(XXX) XXX - XXX - XX'
+			default:
+				return ''
+		}
 	}
 
 	return (
@@ -22,7 +29,7 @@ const InputText = ({name, type, placeholder, handleFocus}) => {
 							<>
 								<input
 									{...field}
-									onFocus={type === 'tel' ? e => handleFocus(e, form) : e => {}}
+									onFocus={type === 'tel' ? e => handleFocus(e, form) : () => {}}
 									className={(meta.error && meta.touched) ? styles.error : ''}
 									type={type}
 									name={name}
