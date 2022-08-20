@@ -9,7 +9,7 @@ const InputText = ({name, type, placeholder, handleFocus}) => {
 	const renderHelperText = (name) => {
 		switch (name) {
 			case 'name':
-				return 'Name should contain 2-60 characters'
+				return 'Enter your name'
 			case 'email':
 				return 'example@domain.com'
 			case 'phone':
